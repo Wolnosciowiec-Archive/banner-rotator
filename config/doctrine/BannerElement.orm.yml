@@ -1,0 +1,51 @@
+App\Entity\BannerElement:
+    type: entity
+    table: br_banner_element
+    repositoryClass: App\Repository\BannerElementRepository
+
+    id:
+        id:
+            type: uuid
+            generator:
+                strategy: AUTO
+    fields:
+        url:
+            type: string
+            length: 1024
+            column: url
+
+        imageUrl:
+            type: string
+            length: 1024
+            column: image_url
+
+        dateAdded:
+            type: datetime_immutable
+            column: date_added
+
+        description:
+            type: text
+            column: description
+
+        expiresAt:
+            type: datetime_immutable
+            column: expires_at
+            nullable: true
+
+        active:
+            type: boolean
+            options:
+                default: false
+
+        title:
+            type: string
+            length: 256
+            column: title
+
+    manyToOne:
+        bannerGroup:
+            targetEntity: BannerGroup
+            inversedBy: elements
+            joinColumn:
+                name: banner_group
+                referencedColumnName: id

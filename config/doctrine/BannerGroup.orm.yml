@@ -1,0 +1,32 @@
+App\Entity\BannerGroup:
+    type: entity
+    table: br_banner_group
+    repositoryClass: App\Repository\BannerElementRepository
+
+    id:
+        id:
+            type: string
+            unique: true
+
+    fields:
+        title:
+            type: string
+            column: title
+            length: 256
+
+        active:
+            type: boolean
+            options:
+                default: false
+
+        dateAdded:
+            type: datetime_immutable
+
+        description:
+            type: text
+
+    oneToMany:
+        elements:
+            targetEntity: BannerElement
+            mappedBy: group
+            cascade: ['persist', 'refresh']

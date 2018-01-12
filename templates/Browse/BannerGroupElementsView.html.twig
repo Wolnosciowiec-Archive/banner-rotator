@@ -1,0 +1,17 @@
+{% extends "Browse/Layout.html.twig" %}
+
+{% block content %}
+    <ul class="anarchist-banner-rotator-list">
+        {% for element in elements %}
+        <li class="anarchist-banner-rotator-element">
+            <a href="{{ element.url }}" target="_blank">
+                {% if element.hasImage() %}
+                <img src="{{ element.getImageUrl() }}" class="anarchist-banner-rotator-image" alt="{{ element.title }}" title="{{ element.description }}">
+                {% else %}
+                <span title="{{ element.description }}">{{ element.title }}</span>
+                {% endif %}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
