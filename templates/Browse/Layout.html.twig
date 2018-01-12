@@ -1,0 +1,40 @@
+{% block header %}
+{% if options.complete_html_document %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+        <title>{{ group.title }}</title>
+        {% endif %}
+
+        <style>
+            .anarchist-banner-rotator-element {
+                list-style: none;
+            }
+
+            .anarchist-banner-rotator-image {
+                max-width: {{ options.max_width }}px;
+            }
+        </style>
+
+        {% if options.custom_css_url %}<link rel="stylesheet" href="{{ options.custom_css_url }}" media="all">{% endif %}
+
+
+        <!--
+          Banner Group: {{ group|json_encode|raw }}
+        -->
+
+        {% if options.complete_html_document %}
+    </head>
+    <body>
+{% endif %}
+{% endblock %}
+
+{% block content %}{% endblock %}
+
+{% block footer %}
+{% if options.complete_html_document %}
+    </body>
+</html>
+{% endif %}
+{% endblock %}

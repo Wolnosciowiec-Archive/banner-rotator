@@ -1,0 +1,9 @@
+nelmio_api_doc:
+    documentation:
+        info:
+            title: Anarchist Banner Rotator
+            description: Shows always up-to-date list of anarchist pages on every of them
+            version: 1.0.0
+    routes:
+        path_patterns:
+            - ^/public(?!/doc$) # Accepts routes under /api except /api/doc
