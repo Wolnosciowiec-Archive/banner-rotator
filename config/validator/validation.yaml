@@ -1,0 +1,18 @@
+App\Entity\BannerGroup:
+    properties:
+        id:
+            - NotBlank: ~
+            - Length:
+                min: 3
+                max: 16
+
+        title:
+            - NotBlank: ~
+            - Length:
+                min: 3
+                max: 254
+
+        description:
+            - Length:
+                min: 0
+                max: 9000

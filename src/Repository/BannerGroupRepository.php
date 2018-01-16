@@ -13,12 +13,12 @@ class BannerGroupRepository extends ServiceEntityRepository
         parent::__construct($registry, BannerGroup::class);
     }
 
-	/**
-	 * @inheritdoc
-	 * @return null|BannerGroup|object
-	 */
+    /**
+     * @inheritdoc
+     * @return null|BannerGroup|object
+     */
     public function find($id, $lockMode = null, $lockVersion = null)
     {
-	    return parent::find($id, $lockMode, $lockVersion);
+        return parent::find($id, $lockMode, $lockVersion);
     }
 }

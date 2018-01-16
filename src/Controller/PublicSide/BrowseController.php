@@ -3,12 +3,12 @@
 namespace App\Controller\PublicSide;
 
 use App\Manager\BannerManager;
+use App\Manager\GroupManager;
+use App\ValueObject\Annotation\ObjectsList;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Swagger\Annotations\Parameter;
-use Swagger\Annotations\Response as SWGResponse;
+use Symfony\Component\HttpFoundation\{JsonResponse, Request, Response};
+use Swagger\Annotations\{Parameter, Response as SWGResponse};
+use App\Entity\{BannerGroup, BannerElement};
 
 /**
  * Responsible for serving the list of banners to the public
@@ -20,9 +20,15 @@ class BrowseController extends Controller
      */
     protected $bannerManager;
 
-    public function __construct(BannerManager $bannerManager)
+    /**
+     * @var GroupManager $groupManager
+     */
+    protected $groupManager;
+
+    public function __construct(BannerManager $bannerManager, GroupManager $groupManager)
     {
         $this->bannerManager = $bannerManager;
+        $this->groupManager  = $groupManager;
     }
 
     /**
@@ -54,7 +60,13 @@ class BrowseController extends Controller
      *
      * @SWGResponse(
      *     response=200,
-     *     description="A list of banner elements that belongs to a banner group"
+     *     description="A list of banner elements that belongs to a banner group",
+     *     examples={
+     *         {
+     *             "group": @BannerGroup(),
+     *             "elements": @ObjectsList(object=@BannerElement())
+     *         }
+     *     }
      * )
      *
      * @param Request $request
@@ -154,7 +166,7 @@ class BrowseController extends Controller
      *
      * @return int
      */
-    private function getIntegerInRange($requestValue, int $starts, int $ends, int $default)
+    protected function getIntegerInRange($requestValue, int $starts, int $ends, int $default)
     {
         $requestValue = (int) $requestValue;
         
@@ -171,15 +183,15 @@ class BrowseController extends Controller
      *
      * @return array|null
      */
-    private function findData(string $groupName, Request $request): ?array
+    protected function findData(string $groupName, Request $request): ?array
     {
-        $bannerGroup = $this->bannerManager->getGroupRepository()->find($groupName);
+        $bannerGroup = $this->groupManager->getRepository()->find($groupName);
 
         if (!$bannerGroup) {
             return null;
         }
 
-        $elements = $this->bannerManager->getElementRepository()->findPublishedBanners(
+        $elements = $this->bannerManager->getRepository()->findPublishedBanners(
             $bannerGroup,
             $this->getIntegerInRange($request->get('limit', 50), 1, 100, 50)
         );

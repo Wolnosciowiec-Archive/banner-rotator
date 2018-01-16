@@ -8,3 +8,7 @@ public.html:
     path: /public/browse/{groupName}.html
     controller: "App\\Controller\\PublicSide\\BrowseController:browseRenderedAction"
     methods: ['GET']
+
+public.main_page:
+    path: /
+    controller: "App\\Controller\\PublicSide\\IndexController::indexAction"

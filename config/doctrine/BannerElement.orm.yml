@@ -5,9 +5,9 @@ App\Entity\BannerElement:
 
     id:
         id:
-            type: uuid
+            type: guid
             generator:
-                strategy: AUTO
+                strategy: UUID
     fields:
         url:
             type: string

@@ -1,6 +1,7 @@
 <?php declare(strict_types = 1);
 
 namespace App\Entity;
+
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
@@ -9,6 +10,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * Example use case:
  *   - A page which is a anarchosyndicalist-union card wants to have a widget with list of it's sections
  *
+ * @Annotation
  * @see BannerElement
  */
 class BannerGroup implements \JsonSerializable
@@ -106,5 +108,45 @@ class BannerGroup implements \JsonSerializable
     public function getElements()
     {
         return $this->elements;
+    }
+
+    /**
+     * @param string $title
+     * @return BannerGroup
+     */
+    public function setTitle(string $title): BannerGroup
+    {
+        $this->title = $title;
+        return $this;
+    }
+
+    /**
+     * @param bool $active
+     * @return BannerGroup
+     */
+    public function setActive(bool $active): BannerGroup
+    {
+        $this->active = $active;
+        return $this;
+    }
+
+    /**
+     * @param string $description
+     * @return BannerGroup
+     */
+    public function setDescription(string $description): BannerGroup
+    {
+        $this->description = $description;
+        return $this;
+    }
+
+    /**
+     * @param string $id
+     * @return BannerGroup
+     */
+    public function setId(string $id): BannerGroup
+    {
+        $this->id = $id;
+        return $this;
     }
 }

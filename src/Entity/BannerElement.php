@@ -4,6 +4,8 @@ namespace App\Entity;
 
 /**
  * A banner that will be displayed
+ *
+ * @Annotation
  */
 class BannerElement implements \JsonSerializable
 {
@@ -51,6 +53,11 @@ class BannerElement implements \JsonSerializable
      * @var bool $active
      */
     protected $active;
+
+    public function __construct()
+    {
+        $this->dateAdded = new \DateTimeImmutable();
+    }
 
     /**
      * @return string
@@ -113,7 +120,7 @@ class BannerElement implements \JsonSerializable
      */
     public function isActive(): bool
     {
-        return $this->active;
+        return (bool) $this->active;
     }
 
     /**
@@ -123,7 +130,6 @@ class BannerElement implements \JsonSerializable
     public function setUrl(string $url): BannerElement
     {
         $this->url = $url;
-
         return $this;
     }
 
@@ -134,7 +140,6 @@ class BannerElement implements \JsonSerializable
     public function setImageUrl(string $imageUrl): BannerElement
     {
         $this->imageUrl = $imageUrl;
-
         return $this;
     }
 
@@ -146,7 +151,6 @@ class BannerElement implements \JsonSerializable
     public function setDateAdded(\DateTimeImmutable $dateAdded): BannerElement
     {
         $this->dateAdded = $dateAdded;
-
         return $this;
     }
 
@@ -158,7 +162,6 @@ class BannerElement implements \JsonSerializable
     public function setDescription(string $description): BannerElement
     {
         $this->description = $description;
-
         return $this;
     }
 
@@ -169,8 +172,7 @@ class BannerElement implements \JsonSerializable
      */
     public function setGroup(BannerGroup $group): BannerElement
     {
-        $this->group = $group;
-
+        $this->bannerGroup = $group;
         return $this;
     }
 
@@ -182,7 +184,6 @@ class BannerElement implements \JsonSerializable
     public function setExpiresAt(?\DateTime $expiresAt): BannerElement
     {
         $this->expiresAt = $expiresAt;
-
         return $this;
     }
 
@@ -194,7 +195,17 @@ class BannerElement implements \JsonSerializable
     public function setActive(bool $active): BannerElement
     {
         $this->active = $active;
+        return $this;
+    }
 
+    /**
+     * @param string $id
+     *
+     * @return BannerElement
+     */
+    public function setId(string $id): BannerElement
+    {
+        $this->id = $id;
         return $this;
     }
 
@@ -207,9 +218,9 @@ class BannerElement implements \JsonSerializable
             'id'          => $this->getId(),
             'url'         => $this->getUrl(),
             'imageUrl'    => $this->getImageUrl(),
-            'dateAdded'   => $this->getDateAdded()->format('Y-m-d H:i:s'),
+            'dateAdded'   => $this->getDateAdded() ? $this->getDateAdded()->format('Y-m-d H:i:s') : '',
             'description' => $this->getDescription(),
-            'group'       => $this->getBannerGroup()->getId(),
+            'group'       => $this->getBannerGroup() ? $this->getBannerGroup()->getId() : '',
             'expiresAt'   => $this->getExpiresAt() ? $this->getExpiresAt()->format('Y-m-d H:i:s') : '',
         ];
     }
@@ -228,5 +239,16 @@ class BannerElement implements \JsonSerializable
     public function hasImage(): bool
     {
         return trim($this->imageUrl) !== '';
+    }
+
+    /**
+     * @param string $title
+     *
+     * @return BannerElement
+     */
+    public function setTitle(string $title): BannerElement
+    {
+        $this->title = $title;
+        return $this;
     }
 }
