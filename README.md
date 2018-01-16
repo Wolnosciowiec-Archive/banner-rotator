@@ -16,3 +16,4 @@ Banner rotating service. Outputs a list of banners in HTML and JSON formats, has
 
 Use `/public/doc` endpoint to access the documentation.
 Also, there is an exported list of routes for Postman in `postman.json`
+ 
