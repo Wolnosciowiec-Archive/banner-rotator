@@ -1,5 +1,10 @@
-# Requires the Asset component and the Twig bundle
-app.swagger_ui:
+
+public.swagger_ui:
     path: /public/doc
     methods: GET
-    defaults: { _controller: nelmio_api_doc.controller.swagger_ui }
+    defaults: { _controller: nelmio_api_doc.controller.swagger_ui, area: default }
+
+collective.swagger_ui:
+    path: /collective/doc
+    methods: GET
+    defaults: { _controller: nelmio_api_doc.controller.swagger_ui, area: collective }

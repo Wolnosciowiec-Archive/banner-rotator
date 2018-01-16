@@ -20,7 +20,7 @@ class BannerElementRepository extends ServiceEntityRepository
      * @param BannerGroup $group
      * @param int $max
      *
-     * @return mixed
+     * @return BannerElement[]
      */
     public function findPublishedBanners(BannerGroup $group, int $max = 50)
     {
@@ -31,5 +31,21 @@ class BannerElementRepository extends ServiceEntityRepository
              ->orderBy('banner.id', 'DESC')
              ->setMaxResults($max)
              ->getQuery()->getResult();
+    }
+
+    /**
+     * Find all banners for a selected group
+     * (includes not active and expired ones)
+     *
+     * @param BannerGroup $group
+     *
+     * @return BannerElement[]
+     */
+    public function findAllBanners(BannerGroup $group)
+    {
+        return $this->createQueryBuilder('banner')
+            ->where('banner.bannerGroup = :group')->setParameter('group', $group)
+            ->orderBy('banner.id', 'DESC')
+            ->getQuery()->getResult();
     }
 }

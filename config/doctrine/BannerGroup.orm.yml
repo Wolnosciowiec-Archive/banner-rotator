@@ -28,5 +28,4 @@ App\Entity\BannerGroup:
     oneToMany:
         elements:
             targetEntity: BannerElement
-            mappedBy: group
-            cascade: ['persist', 'refresh']
+            mappedBy: bannerGroup
