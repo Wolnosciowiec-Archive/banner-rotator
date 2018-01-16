@@ -14,8 +14,6 @@ admin.banner_group.modify:
     path: /collective/group/edit/{groupName}
     controller: "App\\Controller\\Management\\ManageGroupsController::editGroupAction"
     methods: ['PUT']
-    defaults:
-        groupName: ""
 
 admin.banner_group.delete:
     path: /collective/group/{groupName}

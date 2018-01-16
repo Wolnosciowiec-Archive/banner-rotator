@@ -4,7 +4,7 @@ namespace App\Manager;
 
 interface ManagerInterface
 {
-	public function getEntityClassName(): string;
+    public function getEntityClassName(): string;
     public function getRepository();
     public function findOrCreateNew(string $id, bool $createNew);
     public function save($object);
