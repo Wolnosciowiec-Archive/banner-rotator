@@ -1,0 +1,336 @@
+{
+	"info": {
+		"name": "Banner Rotator",
+		"_postman_id": "aef6b1da-9e49-0dab-dc01-15d47192d589",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/collective/group/create",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": \"anarchizm\",\n    \"title\": \"Anarchizm\",\n    \"description\": \"Spis stron o tematyce wolnościowej\",\n    \"active\": true\n}\n"
+				},
+				"url": {
+					"raw": "http://localhost:8000/collective/group/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"collective",
+						"group",
+						"create"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "/collective/group",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8000/collective/group",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"collective",
+						"group"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "/collective/group/edit",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 202\", function () {",
+							"    pm.response.to.have.status(202);",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Anarchizm\",\n    \"description\": \"Spis stron o tematyce wolnościowej (edited)\",\n    \"active\": true\n}\n"
+				},
+				"url": {
+					"raw": "http://localhost:8000/collective/group/edit/anarchizm",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"collective",
+						"group",
+						"edit",
+						"anarchizm"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "/collective/group/anarchizm",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8000/collective/group/anarchizm",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"collective",
+						"group",
+						"anarchizm"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "/collective/element/create/anarchizm",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"url\": \"http://wolnywroclaw.pl\",\n    \"imageUrl\": \"http://wolnywroclaw.pl/wp-content/uploads/2016/12/fawroclawlogo1.png\",\n    \"description\": \"A section of Poland's Anarchist Federation\",\n    \"title\": \"Anarchist Federation: Breslau\",\n    \"active\": true\n}\n"
+				},
+				"url": {
+					"raw": "http://localhost:8000/collective/element/create/anarchizm",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"collective",
+						"element",
+						"create",
+						"anarchizm"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "/collective/element/edit/anarchizm/{bannerId}",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"url\": \"http://wolnywroclaw.pl\",\n    \"imageUrl\": \"http://wolnywroclaw.pl/wp-content/uploads/2016/12/fawroclawlogo1.png\",\n    \"description\": \"A section of Poland's Anarchist Federation\",\n    \"title\": \"Anarchist Federation: Breslau\",\n    \"active\": true\n}\n"
+				},
+				"url": {
+					"raw": "http://localhost:8000/collective/element/create/{bannerId}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"collective",
+						"element",
+						"create",
+						"{bannerId}"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "/collective/element/listing/anarchizm",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8000/collective/element/listing/anarchizm",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"collective",
+						"element",
+						"listing",
+						"anarchizm"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "/public/browse/anarchizm.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"",
+							"pm.test(\"Will contain group information\", function () {",
+							"    var response = pm.response.json();",
+							"    ",
+							"    // asserts on the response",
+							"    pm.expect(response.group.id).to.eql('anarchizm');",
+							"    pm.expect(response.group.title).to.eql('Anarchizm');",
+							"    pm.expect(response.group.description).to.eql('Spis stron o tematyce wolnościowej');",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8000/public/browse/anarchizm.json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"public",
+						"browse",
+						"anarchizm.json"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "/public/browse/anarchizm.html",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Contains created banner\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Anarchist Federation\");",
+							"    ",
+							"    pm.expect(pm.response.text()).to.include('<img src=\"http://wolnywroclaw.pl')",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8000/public/browse/anarchizm.html",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"public",
+						"browse",
+						"anarchizm.html"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "/collective/element/{bannerId}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"url\": \"http://wolnywroclaw.pl\",\n    \"imageUrl\": \"http://wolnywroclaw.pl/wp-content/uploads/2016/12/fawroclawlogo1.png\",\n    \"description\": \"A section of Poland's Anarchist Federation\",\n    \"title\": \"Anarchist Federation: Breslau\",\n    \"active\": true\n}\n"
+				},
+				"url": {
+					"raw": "http://localhost:8000/collective/element/{bannerId}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"collective",
+						"element",
+						"{bannerId}"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

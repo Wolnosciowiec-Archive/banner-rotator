@@ -7,6 +7,7 @@ use App\Exception\EntityNotFoundException;
 use App\Exception\ManagerException;
 use App\Exception\NotDeletableEntityException;
 use App\Manager\ManagerInterface;
+use JMS\Serializer\SerializerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -68,5 +69,18 @@ abstract class AbstractManagementController extends AbstractController
         };
 
         return $this->handleObjectSaveForm($form, $onValidFormAction, $object, $this->hasRequestedObjectCreation($request));
+    }
+    
+    protected function createResponse($responseBody, int $code = 200, array $headers = [])
+    {
+        return new JsonResponse($this->get('serializer')->serialize($responseBody), $code, $headers, true);
+    }
+
+    /**
+     * @return SerializerInterface
+     */
+    protected function getSerializer(): SerializerInterface
+    {
+        return $this->get('serializer');
     }
 }
