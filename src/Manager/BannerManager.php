@@ -58,6 +58,14 @@ class BannerManager implements ManagerInterface
     }
 
     /**
+     * @return BannerGroupRepository
+     */
+    protected function getGroupRepository(): BannerGroupRepository
+    {
+        return $this->groupRepository;
+    }
+
+    /**
      * @param string $id
      * @param bool $createNew
      *
@@ -90,7 +98,7 @@ class BannerManager implements ManagerInterface
      */
     public function createForGroup(string $groupId): BannerElement
     {
-        $group = $this->groupRepository->find($groupId);
+        $group = $this->getGroupRepository()->find($groupId);
 
         if (!$group instanceof BannerGroup) {
             throw new EntityNotFoundException('Group "' .$groupId . '" does not exists');
