@@ -10,6 +10,7 @@ before_script:
   - node --version
   - npm --version
   - node_modules/.bin/newman --version
+  - php ./bin/console server:start
 
 script:
   - ./bin/phpunit
