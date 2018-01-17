@@ -313,7 +313,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"url\": \"http://wolnywroclaw.pl\",\n    \"imageUrl\": \"http://wolnywroclaw.pl/wp-content/uploads/2016/12/fawroclawlogo1.png\",\n    \"description\": \"A section of Poland's Anarchist Federation\",\n    \"title\": \"Anarchist Federation: Breslau\",\n    \"active\": true\n}\n"
+					"raw": ""
 				},
 				"url": {
 					"raw": "http://localhost:8000/collective/element/{bannerId}",

@@ -1,0 +1,45 @@
+App\Entity\BannerElement:
+    exclusion_policy: ALL
+    properties:
+        id:
+            type: string
+            expose: true
+            groups: ['collective']
+
+        imageUrl:
+            type: string
+            expose: true
+            groups: ['collective', 'public']
+
+        url:
+            type: string
+            expose: true
+            groups: ['collective', 'public']
+
+        title:
+            type: string
+            expose: true
+            groups: ['collective', 'public']
+
+        active:
+            type: boolean
+            expose: true
+            groups: ['collective']
+
+        dateAdded:
+            type: DateTimeImmutable<'Y-m-d H:i:s'>
+            expose: true
+            groups: ['collective', 'public']
+
+        expiresAt:
+            type: DateTime<'Y-m-d H:i:s'>
+            expose: true
+            groups: ['collective']
+
+        description:
+            type: string
+            expose: true
+            groups: ['collective', 'public']
+
+        bannerGroup:
+            expose: false

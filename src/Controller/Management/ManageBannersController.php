@@ -59,7 +59,7 @@ class ManageBannersController extends AbstractManagementController
     public function listBannersAction(Request $request, string $groupName): Response
     {
         try {
-            return new JsonResponse($this->listBannersActionHandler->getListOfBanners($groupName));
+            return $this->createResponse($this->listBannersActionHandler->getListOfBanners($groupName));
 
         } catch (EntityNotFoundException $exception) {
             return $this->getEntityNotFoundResponse();

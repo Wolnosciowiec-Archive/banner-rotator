@@ -1,0 +1,30 @@
+App\Entity\BannerGroup:
+    exclusion_policy: ALL
+    properties:
+        id:
+            type: string
+            expose: true
+            groups: ['collective']
+
+        title:
+            type: string
+            expose: true
+            groups: ["collective", 'public']
+
+        active:
+            type: boolean
+            expose: true
+            groups: ['collective']
+
+        dateAdded:
+            type: DateTimeImmutable<'Y-m-d H:i:s'>
+            expose: true
+            groups: ['collective', 'public']
+
+        description:
+            type: string
+            expose: true
+            groups: ['collective', 'public']
+
+        elements:
+            expose: false
