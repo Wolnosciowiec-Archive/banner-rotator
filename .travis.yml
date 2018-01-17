@@ -1,9 +1,10 @@
-language: node_js
+language: php
 node_js:
   - "8.2.1"
 
 install:
   - npm install newman
+  - composer install
 
 before_script:
   - node --version
@@ -11,4 +12,5 @@ before_script:
   - node_modules/.bin/newman --version
 
 script:
+  - ./bin/phpunit
   - node_modules/.bin/newman run postman.json
