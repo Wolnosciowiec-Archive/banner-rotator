@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Exception\ManagerException;
+use JMS\Serializer\SerializationContext;
+use JMS\Serializer\Serializer;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormInterface;
@@ -45,7 +47,7 @@ abstract class AbstractController extends Controller
     protected function handleObjectSaveForm(FormInterface $form, callable $action, $validResponseData, bool $isCreationMode)
     {
         if (!$form->isValid()) {
-            return new JsonResponse(['message' => 'Validation error', 'error' => $this->getFormErrors($form)], 400);
+            return $this->createResponse(['message' => 'Validation error', 'error' => $this->getFormErrors($form)], 400);
         }
         
         try {
@@ -54,7 +56,7 @@ abstract class AbstractController extends Controller
         } catch (ManagerException $exception) {
 
             if ($exception->getCode() === ManagerException::ENTITY_ALREADY_EXISTS) {
-                return new JsonResponse(['message' => 'Object already exists', 'code' => $exception->getCode()], 400);
+                return $this->createResponse(['message' => 'Object already exists', 'code' => $exception->getCode()], 400);
             }
 
             throw $exception;
@@ -68,7 +70,7 @@ abstract class AbstractController extends Controller
      */
     protected function getEntityNotFoundResponse(): JsonResponse
     {
-        return new JsonResponse(['message' => 'Object not found'], 404);
+        return $this->createResponse(['message' => 'Object not found'], 404);
     }
 
     /**
@@ -106,5 +108,38 @@ abstract class AbstractController extends Controller
         }
 
         return $errors;
+    }
+
+    /**
+     * @param mixed|\JsonSerializable|array|string $responseBody
+     * @param int $code
+     * @param array $headers
+     *
+     * @return JsonResponse
+     */
+    protected function createResponse($responseBody, int $code = 200, array $headers = [])
+    {
+        return new JsonResponse(
+            $this->getSerializer()->serialize($responseBody, 'json', $this->getSerializationContext()),
+            $code,
+            $headers,
+            true
+        );
+    }
+
+    /**
+     * @return Serializer
+     */
+    protected function getSerializer(): Serializer
+    {
+        return $this->get('jms_serializer');
+    }
+
+    /**
+     * @return SerializationContext
+     */
+    protected function getSerializationContext(): SerializationContext
+    {
+        return (new SerializationContext())->setGroups(['public']);
     }
 }

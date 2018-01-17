@@ -2,10 +2,10 @@
 
 namespace App\Controller\PublicSide;
 
+use App\Controller\AbstractController;
 use App\Manager\BannerManager;
 use App\Manager\GroupManager;
 use App\ValueObject\Annotation\ObjectsList;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\{JsonResponse, Request, Response};
 use Swagger\Annotations\{Parameter, Response as SWGResponse};
 use App\Entity\{BannerGroup, BannerElement};
@@ -13,7 +13,7 @@ use App\Entity\{BannerGroup, BannerElement};
 /**
  * Responsible for serving the list of banners to the public
  */
-class BrowseController extends Controller
+class BrowseController extends AbstractController
 {
     /**
      * @var BannerManager $bannerManager
@@ -79,10 +79,10 @@ class BrowseController extends Controller
         $data = $this->findData($groupName, $request);
 
         if ($data === null) {
-            return new JsonResponse(['error' => 'Banner group not found'], 404);
+            return $this->createResponse(['error' => 'Banner group not found'], 404);
         }
 
-        return new JsonResponse($data, 200);
+        return $this->createResponse($data, 200);
     }
 
     /**

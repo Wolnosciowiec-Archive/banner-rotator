@@ -33,3 +33,6 @@ services:
         tags:
             - name: nelmio_api_doc.model_describer
               priority: 1
+
+    jms_serializer.serialized_name_annotation_strategy:
+        class: JMS\Serializer\Naming\IdenticalPropertyNamingStrategy

@@ -1,6 +1,6 @@
 jms_serializer:
     metadata:
         directories:
-            FOSUB:
-                namespace_prefix: "App"
-                path: "%kernel.root_dir%/../config/serializer"
+            App:
+                namespace_prefix: "App\\Entity"
+                path: "%kernel.root_dir%/../config/serializer/"
