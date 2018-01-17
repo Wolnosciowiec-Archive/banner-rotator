@@ -14,9 +14,9 @@ use PHPUnit\Framework\MockObject\MockObject;
 
 class BannerManagerTest extends TestCase
 {
-	/**
-	 * @see BannerManager::createForGroup()
-	 */
+    /**
+     * @see BannerManager::createForGroup()
+     */
     public function test_creates_element_with_preselected_group()
     {
         $manager = $this->createManagerWithRepositoryThatFindsObject();
@@ -25,46 +25,46 @@ class BannerManagerTest extends TestCase
         $this->assertElementBelongsToGroupNamed('test', $createdElement);
     }
 
-	/**
-	 * @see BannerManager::deleteById()
-	 */
+    /**
+     * @see BannerManager::deleteById()
+     */
     public function test_deletes_by_id()
     {
-    	$repository = $this->createMock(BannerElementRepository::class);
-    	$repository->method('find')->willReturn(new BannerElement());
-    	$em = $this->createMock(EntityManagerInterface::class);
+        $repository = $this->createMock(BannerElementRepository::class);
+        $repository->method('find')->willReturn(new BannerElement());
+        $em = $this->createMock(EntityManagerInterface::class);
 
-    	$manager = new BannerManager(
-    		$repository,
-		    $em,
-		    $this->createMock(BannerGroupRepository::class)
-	    );
+        $manager = new BannerManager(
+            $repository,
+            $em,
+            $this->createMock(BannerGroupRepository::class)
+        );
 
-    	// asserts
-    	$em->expects($this->once())->method('remove');
+        // asserts
+        $em->expects($this->once())->method('remove');
 
-    	$manager->deleteById('test');
+        $manager->deleteById('test');
     }
 
-	/**
-	 * @see BannerManager::deleteById()
-	 */
-	public function test_throws_exception_when_element_to_delete_was_not_found()
-	{
-		$repository = $this->createMock(BannerElementRepository::class);
-		$em = $this->createMock(EntityManagerInterface::class);
+    /**
+     * @see BannerManager::deleteById()
+     */
+    public function test_throws_exception_when_element_to_delete_was_not_found()
+    {
+        $repository = $this->createMock(BannerElementRepository::class);
+        $em = $this->createMock(EntityManagerInterface::class);
 
-		$manager = new BannerManager(
-			$repository,
-			$em,
-			$this->createMock(BannerGroupRepository::class)
-		);
+        $manager = new BannerManager(
+            $repository,
+            $em,
+            $this->createMock(BannerGroupRepository::class)
+        );
 
-		// asserts
-		$this->expectException(EntityNotFoundException::class);
+        // asserts
+        $this->expectException(EntityNotFoundException::class);
 
-		$manager->deleteById('test');
-	}
+        $manager->deleteById('test');
+    }
     
     private function assertElementBelongsToGroupNamed(string $group, BannerElement $element)
     {
