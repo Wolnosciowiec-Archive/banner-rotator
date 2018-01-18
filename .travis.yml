@@ -7,6 +7,7 @@ node_js:
 install:
   - mkdir translations
   - npm install newman
+  - make deploy
   - composer install --dev
 
 before_script:
