@@ -79,10 +79,10 @@ class BrowseController extends AbstractController
         $data = $this->findData($groupName, $request);
 
         if ($data === null) {
-            return $this->createResponse(['error' => 'Banner group not found'], 404);
+            return $this->createApiResponse(['error' => 'Banner group not found'], 404);
         }
 
-        return $this->createResponse($data, 200);
+        return $this->createApiResponse($data, 200);
     }
 
     /**
@@ -155,7 +155,7 @@ class BrowseController extends AbstractController
                 $request->get('complete_html_document') ?? false,
         ];
 
-        return $this->render('Browse/BannerGroupElementsView.html.twig', $data);
+        return $this->render('Browse/BannerGroupElementsView.html.twig', $data, $this->createResponse());
     }
 
     /**

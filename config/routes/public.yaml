@@ -12,3 +12,4 @@ public.html:
 public.main_page:
     path: /
     controller: "App\\Controller\\PublicSide\\IndexController::indexAction"
+    methods: ['GET']
