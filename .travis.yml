@@ -16,5 +16,5 @@ before_script:
   - php ./bin/console server:start
 
 script:
-  - ./bin/phpunit
+  - ./vendor/bin/phpunit
   - node_modules/.bin/newman run postman.json
