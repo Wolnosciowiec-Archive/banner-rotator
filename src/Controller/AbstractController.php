@@ -47,7 +47,7 @@ abstract class AbstractController extends Controller
     protected function handleObjectSaveForm(FormInterface $form, callable $action, $validResponseData, bool $isCreationMode)
     {
         if (!$form->isValid()) {
-            return $this->createResponse(['message' => 'Validation error', 'error' => $this->getFormErrors($form)], 400);
+            return $this->createApiResponse(['message' => 'Validation error', 'error' => $this->getFormErrors($form)], 400);
         }
         
         try {
@@ -56,7 +56,7 @@ abstract class AbstractController extends Controller
         } catch (ManagerException $exception) {
 
             if ($exception->getCode() === ManagerException::ENTITY_ALREADY_EXISTS) {
-                return $this->createResponse(['message' => 'Object already exists', 'code' => $exception->getCode()], 400);
+                return $this->createApiResponse(['message' => 'Object already exists', 'code' => $exception->getCode()], 400);
             }
 
             throw $exception;
@@ -70,7 +70,7 @@ abstract class AbstractController extends Controller
      */
     protected function getEntityNotFoundResponse(): JsonResponse
     {
-        return $this->createResponse(['message' => 'Object not found'], 404);
+        return $this->createApiResponse(['message' => 'Object not found'], 404);
     }
 
     /**
@@ -117,14 +117,36 @@ abstract class AbstractController extends Controller
      *
      * @return JsonResponse
      */
-    protected function createResponse($responseBody, int $code = 200, array $headers = [])
+    protected function createApiResponse($responseBody, int $code = 200, array $headers = [])
     {
+        $headers = array_merge($headers, [
+            'Access-Control-Allow-Origin'      => $_SERVER['HTTP_ORIGIN'] ?? '*',
+            'Access-Control-Allow-Credentials' => false,
+            'Access-Control-Max-Age'           => 3600,
+        ]);
+
         return new JsonResponse(
             $this->getSerializer()->serialize($responseBody, 'json', $this->getSerializationContext()),
             $code,
             $headers,
             true
         );
+    }
+
+     /**
+      * @param string $responseBody
+      * @param int $code
+      * @param array $headers
+      *
+      * @return Response
+      */
+    protected function createResponse(string $responseBody = '', int $code = 200, array $headers = [])
+    {
+         $headers = array_merge($headers, [
+              'X-Frame-Options' => 'AllowAll',
+         ]);
+
+         return new Response($responseBody, $code, $headers);
     }
 
     /**

@@ -48,7 +48,7 @@ class ManageGroupsController extends AbstractManagementController
      */
     public function listGroupsAction(): JsonResponse
     {
-        return $this->createResponse($this->manager->getRepository()->findAll(), 200);
+        return $this->createApiResponse($this->manager->getRepository()->findAll(), 200);
     }
 
     /**

@@ -43,7 +43,7 @@ abstract class AbstractManagementController extends AbstractController
             return $this->getEntityNotFoundResponse();
         }
 
-        return $this->createResponse(['message' => 'OK']);
+        return $this->createApiResponse(['message' => 'OK']);
     }
 
     /**

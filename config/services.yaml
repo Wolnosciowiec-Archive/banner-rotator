@@ -36,3 +36,14 @@ services:
 
     jms_serializer.serialized_name_annotation_strategy:
         class: JMS\Serializer\Naming\IdenticalPropertyNamingStrategy
+
+    App\Event\Listener\CorsListener:
+        class: App\Event\Listener\CorsListener
+        arguments:
+            $allowOrigin: '%env(HEADER_ALLOW_ORIGIN)%'
+            $allowCredentials: '%env(HEADER_ALLOW_CREDENTIALS)%'
+            $maxAge: '%env(HEADER_MAX_AGE)%'
+            $allowMethods: '%env(HEADER_ALLOW_METHODS)%'
+            $allowHeaders: '%env(HEADER_ALLOW_HEADERS)%'
+        tags:
+            - kernel.event_subscriber
