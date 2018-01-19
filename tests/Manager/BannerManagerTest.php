@@ -2,13 +2,10 @@
 
 namespace App\Tests\Manager;
 
-use App\Entity\BannerElement;
-use App\Entity\BannerGroup;
-use App\Exception\EntityNotFoundException;
-use App\Exception\ManagerException;
+use App\Entity\{BannerElement, BannerGroup};
+use App\Exception\{EntityNotFoundException, ManagerException};
+use App\Repository\{BannerElementRepository, BannerGroupRepository};
 use App\Manager\BannerManager;
-use App\Repository\BannerElementRepository;
-use App\Repository\BannerGroupRepository;
 use App\Tests\TestCase;
 use Doctrine\ORM\EntityManagerInterface;
 use PHPUnit\Framework\MockObject\MockObject;

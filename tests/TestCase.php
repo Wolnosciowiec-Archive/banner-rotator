@@ -26,4 +26,14 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
         $this->assertNotEmpty($element->getId());
         $this->assertInstanceOf(BannerGroup::class, $element->getBannerGroup());
     }
+
+    /**
+     * @param string $expectedId
+     * @param BannerGroup|mixed $group
+     */
+    protected function assertGroupHasId(string $expectedId, $group)
+    {
+        $this->assertInstanceOf(BannerGroup::class, $group);
+        $this->assertSame($expectedId, $group->getId());
+    }
 }

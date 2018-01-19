@@ -149,4 +149,14 @@ class BannerGroup implements \JsonSerializable
         $this->id = $id;
         return $this;
     }
+
+    /**
+     * @param BannerElement[]|ArrayCollection $elements
+     * @return BannerGroup
+     */
+    public function setElements($elements)
+    {
+        $this->elements = $elements;
+        return $this;
+    }
 }

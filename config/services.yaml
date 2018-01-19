@@ -27,13 +27,6 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
-    nelmio_api_doc.model_describers.collection:
-        class: App\Service\ModelDescriber\CollectionModelDescriber
-        public: false
-        tags:
-            - name: nelmio_api_doc.model_describer
-              priority: 1
-
     jms_serializer.serialized_name_annotation_strategy:
         class: JMS\Serializer\Naming\IdenticalPropertyNamingStrategy
 
