@@ -3944,16 +3944,16 @@
         },
         {
             "name": "symfony/twig-bundle",
-            "version": "v4.0.3",
+            "version": "v4.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/twig-bundle.git",
-                "reference": "7c1ee541f7d8836d901d989c449746c953be930b"
+                "reference": "fdaa069cd5cf3918b03d10a5e5819b064451ee4c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/twig-bundle/zipball/7c1ee541f7d8836d901d989c449746c953be930b",
-                "reference": "7c1ee541f7d8836d901d989c449746c953be930b",
+                "url": "https://api.github.com/repos/symfony/twig-bundle/zipball/fdaa069cd5cf3918b03d10a5e5819b064451ee4c",
+                "reference": "fdaa069cd5cf3918b03d10a5e5819b064451ee4c",
                 "shasum": ""
             },
             "require": {
@@ -4013,7 +4013,7 @@
             ],
             "description": "Symfony TwigBundle",
             "homepage": "https://symfony.com",
-            "time": "2018-01-04T15:52:56+00:00"
+            "time": "2018-02-14T14:11:10+00:00"
         },
         {
             "name": "symfony/validator",
