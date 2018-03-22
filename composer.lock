@@ -1264,12 +1264,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nelmio/NelmioApiDocBundle.git",
-                "reference": "981a2b6293f70e760237edf6b44b41274ae0c1a6"
+                "reference": "f9e28db38b2673f7ed9ba63b472d53064203fee0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nelmio/NelmioApiDocBundle/zipball/981a2b6293f70e760237edf6b44b41274ae0c1a6",
-                "reference": "981a2b6293f70e760237edf6b44b41274ae0c1a6",
+                "url": "https://api.github.com/repos/nelmio/NelmioApiDocBundle/zipball/f9e28db38b2673f7ed9ba63b472d53064203fee0",
+                "reference": "f9e28db38b2673f7ed9ba63b472d53064203fee0",
                 "shasum": ""
             },
             "require": {
@@ -1277,6 +1277,7 @@
                 "php": "^7.0",
                 "phpdocumentor/reflection-docblock": "^3.1|^4.0",
                 "symfony/framework-bundle": "^3.4|^4.0",
+                "symfony/options-resolver": "^3.4.4|^4.0",
                 "symfony/property-info": "^3.4|^4.0",
                 "zircote/swagger-php": "^2.0.9"
             },
@@ -1337,7 +1338,7 @@
                 "documentation",
                 "rest"
             ],
-            "time": "2018-02-26T19:58:32+00:00"
+            "time": "2018-03-21T12:25:40+00:00"
         },
         {
             "name": "ocramius/package-versions",
@@ -2832,16 +2833,16 @@
         },
         {
             "name": "symfony/framework-bundle",
-            "version": "v4.0.3",
+            "version": "v4.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/framework-bundle.git",
-                "reference": "7d80f8dcebce598b03dfe75a8669d8a1942687cd"
+                "reference": "3766b9b88e9918f68560b58a404340b41112b861"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/framework-bundle/zipball/7d80f8dcebce598b03dfe75a8669d8a1942687cd",
-                "reference": "7d80f8dcebce598b03dfe75a8669d8a1942687cd",
+                "url": "https://api.github.com/repos/symfony/framework-bundle/zipball/3766b9b88e9918f68560b58a404340b41112b861",
+                "reference": "3766b9b88e9918f68560b58a404340b41112b861",
                 "shasum": ""
             },
             "require": {
@@ -2942,7 +2943,7 @@
             ],
             "description": "Symfony FrameworkBundle",
             "homepage": "https://symfony.com",
-            "time": "2018-01-04T15:52:56+00:00"
+            "time": "2018-01-29T09:06:29+00:00"
         },
         {
             "name": "symfony/http-foundation",
