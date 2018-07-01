@@ -1,6 +1,10 @@
 Banner Rotator
 ==============
 
+[![Docker Build Status](https://img.shields.io/docker/build/wolnosciowiec/banner-rotator.svg)](https://hub.docker.com/r/wolnosciowiec/banner-rotator)
+[![MicroBadger Layers](https://img.shields.io/microbadger/layers/wolnosciowiec/banner-rotator.svg)](https://github.com/Wolnosciowiec/banner-rotator)
+
+
 Banner rotating service. Outputs a list of banners in HTML and JSON formats, has an API documentation.
 
 ###### Made for the Anarchist movement
