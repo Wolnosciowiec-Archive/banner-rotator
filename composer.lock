@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
     "content-hash": "fd80a6aaaaee8e675396545e01d34d1d",
@@ -3221,12 +3221,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/lts.git",
-                "reference": "396c5fca8d73d01186df37d7031321a3c0c2bf92"
+                "reference": "6de50b244bad631a71544b3cc3c8e206c0e5f991"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/lts/zipball/396c5fca8d73d01186df37d7031321a3c0c2bf92",
-                "reference": "396c5fca8d73d01186df37d7031321a3c0c2bf92",
+                "url": "https://api.github.com/repos/symfony/lts/zipball/6de50b244bad631a71544b3cc3c8e206c0e5f991",
+                "reference": "6de50b244bad631a71544b3cc3c8e206c0e5f991",
                 "shasum": ""
             },
             "conflict": {
@@ -3255,6 +3255,7 @@
                 "symfony/intl": ">=5",
                 "symfony/ldap": ">=5",
                 "symfony/lock": ">=5",
+                "symfony/messenger": ">=5",
                 "symfony/monolog-bridge": ">=5",
                 "symfony/options-resolver": ">=5",
                 "symfony/process": ">=5",
@@ -3305,7 +3306,7 @@
             ],
             "description": "Enforces Long Term Supported versions of Symfony components",
             "homepage": "https://symfony.com",
-            "time": "2017-10-19T02:16:32+00:00"
+            "time": "2018-04-03T05:04:16+00:00"
         },
         {
             "name": "symfony/maker-bundle",
@@ -5664,16 +5665,16 @@
         },
         {
             "name": "symfony/phpunit-bridge",
-            "version": "v4.0.3",
+            "version": "v4.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/phpunit-bridge.git",
-                "reference": "b989c646eb422f3ad583f0be3b482a774668e86f"
+                "reference": "c7f28cbf2df4e9deed7fc376ca4f146eaa5afc8a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/phpunit-bridge/zipball/b989c646eb422f3ad583f0be3b482a774668e86f",
-                "reference": "b989c646eb422f3ad583f0be3b482a774668e86f",
+                "url": "https://api.github.com/repos/symfony/phpunit-bridge/zipball/c7f28cbf2df4e9deed7fc376ca4f146eaa5afc8a",
+                "reference": "c7f28cbf2df4e9deed7fc376ca4f146eaa5afc8a",
                 "shasum": ""
             },
             "require": {
@@ -5692,7 +5693,7 @@
             "type": "symfony-bridge",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.0-dev"
+                    "dev-master": "4.1-dev"
                 },
                 "thanks": {
                     "name": "phpunit/phpunit",
@@ -5726,7 +5727,7 @@
             ],
             "description": "Symfony PHPUnit Bridge",
             "homepage": "https://symfony.com",
-            "time": "2018-01-04T17:20:09+00:00"
+            "time": "2018-06-11T12:56:28+00:00"
         },
         {
             "name": "symfony/polyfill-php72",
