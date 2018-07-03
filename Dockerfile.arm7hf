@@ -5,7 +5,9 @@ ENV DATABASE_URL "sqlite:///%kernel.project_dir%/var/data.db"
 
 ADD . /var/www/html
 RUN [ "cross-build-start" ]
+
 RUN cd /var/www/html \
     && chown www-data:www-data ./ -R \
-    && make deploy
+    && su www-data -s /bin/bash -c "make deploy"
+
 RUN [ "cross-build-end" ]
