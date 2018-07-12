@@ -19,9 +19,7 @@ class BannerElementForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('active',      CheckboxType::class, [
-                'empty_data' => false,
-            ])
+            ->add('active',      CheckboxType::class)
             ->add('title',       TextType::class, [
                 'empty_data' => '',
             ])
