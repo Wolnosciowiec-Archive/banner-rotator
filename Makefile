@@ -38,6 +38,7 @@ setup_database_first_time:
 ## Build the application by running preparation tasks such as composer install
 build:
 	composer install --dev
+	php ./bin/console cache:clear --env=${ENV}
 	php ./bin/console cache:warmup --env=${ENV}
 
 ## Start the webserver and open the browser
@@ -53,7 +54,6 @@ migrate:
 deploy:
 	make build
 	make migrate
-
 
 ## Build x86_64 image
 build@x86_64:
