@@ -3,12 +3,12 @@
 namespace App\Controller\PublicSide;
 
 use App\Controller\AbstractController;
-use App\Manager\BannerManager;
-use App\Manager\GroupManager;
-use App\ValueObject\Annotation\ObjectsList;
+use App\Domain\ActionHandler\BrowseAction;
+use App\Domain\Entity\BannerElement;
+use App\Domain\ValueObject\Annotation\ObjectsList;
 use Symfony\Component\HttpFoundation\{JsonResponse, Request, Response};
 use Swagger\Annotations\{Parameter, Response as SWGResponse};
-use App\Entity\{BannerGroup, BannerElement};
+use App\Domain\Entity\{BannerGroup};
 
 /**
  * Responsible for serving the list of banners to the public
@@ -16,19 +16,13 @@ use App\Entity\{BannerGroup, BannerElement};
 class BrowseController extends AbstractController
 {
     /**
-     * @var BannerManager $bannerManager
+     * @var BrowseAction
      */
-    protected $bannerManager;
+    protected $handler;
 
-    /**
-     * @var GroupManager $groupManager
-     */
-    protected $groupManager;
-
-    public function __construct(BannerManager $bannerManager, GroupManager $groupManager)
+    public function __construct(BrowseAction $handler)
     {
-        $this->bannerManager = $bannerManager;
-        $this->groupManager  = $groupManager;
+        $this->handler = $handler;
     }
 
     /**
@@ -76,7 +70,11 @@ class BrowseController extends AbstractController
      */
     public function browseJsonAction(Request $request, string $groupName): JsonResponse
     {
-        $data = $this->findData($groupName, $request);
+        $data = $this->handler->handle(
+            $groupName,
+            $this->getIntegerInRange($request->get('limit', 50), 1, 100, 50),
+            $request->get('randomize') === 'true'
+        );
 
         if ($data === null) {
             return $this->createApiResponse(['error' => 'Banner group not found'], 404);
@@ -140,7 +138,11 @@ class BrowseController extends AbstractController
      */
     public function browseRenderedAction(Request $request, string $groupName): Response
     {
-        $data = $this->findData($groupName, $request);
+        $data = $this->handler->handle(
+            $groupName,
+            $this->getIntegerInRange($request->get('limit', 50), 1, 100, 50),
+            $request->get('randomize') === 'true'
+        );
 
         if ($data === null) {
             return $this->render('Browse/NoSuchGroup.html.twig');
@@ -175,34 +177,5 @@ class BrowseController extends AbstractController
         }
         
         return $requestValue;
-    }
-
-    /**
-     * @param string $groupName
-     * @param Request $request
-     *
-     * @return array|null
-     */
-    protected function findData(string $groupName, Request $request): ?array
-    {
-        $bannerGroup = $this->groupManager->getRepository()->find($groupName);
-
-        if (!$bannerGroup) {
-            return null;
-        }
-
-        $elements = $this->bannerManager->getRepository()->findPublishedBanners(
-            $bannerGroup,
-            $this->getIntegerInRange($request->get('limit', 50), 1, 100, 50)
-        );
-
-        if ($request->get('randomize') === 'true') {
-            shuffle($elements);
-        }
-
-        return [
-            'group'    => $bannerGroup,
-            'elements' => $elements,
-        ];
     }
 }

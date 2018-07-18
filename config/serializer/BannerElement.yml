@@ -1,4 +1,4 @@
-App\Entity\BannerElement:
+App\Domain\Entity\BannerElement:
     exclusion_policy: ALL
     properties:
         id:

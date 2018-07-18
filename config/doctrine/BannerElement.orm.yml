@@ -1,7 +1,7 @@
-App\Entity\BannerElement:
+App\Domain\Entity\BannerElement:
     type: entity
     table: br_banner_element
-    repositoryClass: App\Repository\BannerElementRepository
+    repositoryClass: App\Domain\Repository\BannerElementRepository
 
     id:
         id:

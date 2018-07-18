@@ -2,5 +2,5 @@ jms_serializer:
     metadata:
         directories:
             App:
-                namespace_prefix: "App\\Entity"
+                namespace_prefix: "App\\Domain\\Entity"
                 path: "%kernel.root_dir%/../config/serializer/"

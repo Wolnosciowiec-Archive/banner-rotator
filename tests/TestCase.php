@@ -2,8 +2,8 @@
 
 namespace App\Tests;
 
-use App\Entity\BannerElement;
-use App\Entity\BannerGroup;
+use App\Domain\Entity\BannerElement;
+use App\Domain\Entity\BannerGroup;
 
 abstract class TestCase extends \PHPUnit\Framework\TestCase
 {

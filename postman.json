@@ -1,8 +1,7 @@
 {
 	"info": {
-		"name": "Banner Rotator",
 		"_postman_id": "aef6b1da-9e49-0dab-dc01-15d47192d589",
-		"description": "",
+		"name": "Banner Rotator",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -41,8 +40,7 @@
 						"group",
 						"create"
 					]
-				},
-				"description": ""
+				}
 			},
 			"response": []
 		},
@@ -63,8 +61,7 @@
 						"collective",
 						"group"
 					]
-				},
-				"description": ""
+				}
 			},
 			"response": []
 		},
@@ -104,39 +101,29 @@
 						"edit",
 						"anarchizm"
 					]
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "/collective/group/anarchizm",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "http://localhost:8000/collective/group/anarchizm",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"collective",
-						"group",
-						"anarchizm"
-					]
-				},
-				"description": ""
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "/collective/element/create/anarchizm",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8f2ea579-de4c-486b-b824-0362868df04f",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Has an id assigned\", function () {",
+							"    var response = pm.response.json();",
+							"    pm.expect(response.id).to.not.eql(null);",
+							"    pm.globals.set(\"wolny_wroclaw_id\", response.id);",
+							"});",
+							""
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -157,22 +144,21 @@
 						"create",
 						"anarchizm"
 					]
-				},
-				"description": ""
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "/collective/element/edit/anarchizm/{bannerId}",
 			"request": {
-				"method": "POST",
+				"method": "PUT",
 				"header": [],
 				"body": {
 					"mode": "raw",
 					"raw": "{\n    \"url\": \"http://wolnywroclaw.pl\",\n    \"imageUrl\": \"http://wolnywroclaw.pl/wp-content/uploads/2016/12/fawroclawlogo1.png\",\n    \"description\": \"A section of Poland's Anarchist Federation\",\n    \"title\": \"Anarchist Federation: Breslau\",\n    \"active\": true\n}\n"
 				},
 				"url": {
-					"raw": "http://localhost:8000/collective/element/create/{bannerId}",
+					"raw": "http://localhost:8000/collective/element/edit/{{wolny_wroclaw_id}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -181,16 +167,30 @@
 					"path": [
 						"collective",
 						"element",
-						"create",
-						"{bannerId}"
+						"edit",
+						"{{wolny_wroclaw_id}}"
 					]
-				},
-				"description": ""
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "/collective/element/listing/anarchizm",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bc0f7e47-17a9-47f0-9b37-0f7206e947d9",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Contains added wolnywroclaw.pl\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"wolnywroclaw.pl\");",
+							"});",
+							""
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -211,8 +211,7 @@
 						"listing",
 						"anarchizm"
 					]
-				},
-				"description": ""
+				}
 			},
 			"response": []
 		},
@@ -222,6 +221,7 @@
 				{
 					"listen": "test",
 					"script": {
+						"id": "f49b5e68-8e84-4a2e-94bf-1c16dfc2d7f8",
 						"type": "text/javascript",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {",
@@ -237,7 +237,16 @@
 							"    pm.expect(response.group.id).to.eql('anarchizm');",
 							"    pm.expect(response.group.title).to.eql('Anarchizm');",
 							"    pm.expect(response.group.description).to.eql('Spis stron o tematyce wolnościowej');",
-							"});"
+							"});",
+							"",
+							"pm.test(\"Contains added wolnywroclaw.pl\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"wolnywroclaw.pl\");",
+							"});",
+							"",
+							"pm.test(\"Does not contain id of a banner\", function () {",
+							"    pm.expect(pm.response.text()).to.not.include(pm.variables.get(\"wolny_wroclaw_id\"));",
+							"});",
+							""
 						]
 					}
 				}
@@ -258,8 +267,7 @@
 						"browse",
 						"anarchizm.json"
 					]
-				},
-				"description": ""
+				}
 			},
 			"response": []
 		},
@@ -301,8 +309,7 @@
 						"browse",
 						"anarchizm.html"
 					]
-				},
-				"description": ""
+				}
 			},
 			"response": []
 		},
@@ -316,7 +323,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8000/collective/element/{bannerId}",
+					"raw": "http://localhost:8000/collective/element/{{wolny_wroclaw_id}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -325,10 +332,321 @@
 					"path": [
 						"collective",
 						"element",
-						"{bannerId}"
+						"{{wolny_wroclaw_id}}"
 					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/collective/group/anarchizm",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0241aba6-2714-4f7d-9f29-ec932cd99ed7",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Cannot delete the group when it contains banners\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"This object cannot be deleted, existing elements are under it\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
 				},
-				"description": ""
+				"url": {
+					"raw": "http://localhost:8000/collective/group/anarchizm",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"collective",
+						"group",
+						"anarchizm"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "#2 /collective/group/create",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": \"test\",\n    \"title\": \"Did you know that?\",\n    \"description\": \"Approximately 57 percent of all children in the United States are living in homes that are either considered to be either 'low income' or impoverished.\",\n    \"active\": true\n}\n"
+				},
+				"url": {
+					"raw": "http://localhost:8000/collective/group/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"collective",
+						"group",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "#2 /collective/group/create (duplicate)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b2c65132-f6f3-4589-8363-aa3454687fde",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"",
+							"",
+							"pm.test(\"The group cannot be created twice\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Object already exists\");",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": \"test\",\n    \"title\": \"Did you know that?\",\n    \"description\": \"Approximately 57 percent of all children in the United States are living in homes that are either considered to be either 'low income' or impoverished.\",\n    \"active\": true\n}\n"
+				},
+				"url": {
+					"raw": "http://localhost:8000/collective/group/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"collective",
+						"group",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "#2 /collective/group/test",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1f83a1e0-8e9f-4e80-ba35-6e53b26dc065",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Empty group can be deleted\", function () {",
+							"    pm.expect(pm.response.text()).to.not.include(\"This object cannot be deleted, existing elements are under it\");",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8000/collective/group/test",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"collective",
+						"group",
+						"test"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "#3 validation: /collective/group/create",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9f062f58-f398-4d59-81d1-21e46cb4a29c",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"",
+							"",
+							"pm.test(\"There is a validation error reported\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Validation error\");",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\n}\n"
+				},
+				"url": {
+					"raw": "http://localhost:8000/collective/group/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"collective",
+						"group",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "#3 validation: /collective/group/create (missing: id)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9ba9ca1f-bf5d-42e5-8754-fb6a822329cb",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"",
+							"",
+							"pm.test(\"There is a validation error reported\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Validation error\");",
+							"});",
+							"",
+							"",
+							"",
+							"pm.test(\"Prints missing field\", function () {",
+							"    pm.expect(pm.response.text()).to.include('\"id\":');",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Anarchizm\",\n    \"description\": \"Spis stron o tematyce wolnościowej\",\n    \"active\": true\n}\n"
+				},
+				"url": {
+					"raw": "http://localhost:8000/collective/group/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"collective",
+						"group",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "#3 validation: /collective/group/create (empty: title)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a2420f82-a8d2-4f7f-a392-5f6bdf2233e0",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"",
+							"",
+							"pm.test(\"There is a validation error reported\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Validation error\");",
+							"});",
+							"",
+							"pm.test(\"Prints missing field\", function () {",
+							"    pm.expect(pm.response.text()).to.include('\"title\":');",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": \"ankoem\",\n    \"title\": \"\",\n    \"description\": \"Spis stron o tematyce wolnościowej\",\n    \"active\": true\n}\n"
+				},
+				"url": {
+					"raw": "http://localhost:8000/collective/group/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"collective",
+						"group",
+						"create"
+					]
+				}
 			},
 			"response": []
 		}

@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Exception\ManagerException;
+use App\Domain\Exception\ManagerException;
 use JMS\Serializer\SerializationContext;
 use JMS\Serializer\Serializer;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -38,31 +38,40 @@ abstract class AbstractController extends Controller
     /**
      * @param FormInterface $form
      * @param callable      $action
-     * @param mixed         $validResponseData
      * @param bool          $isCreationMode
      *
      * @return JsonResponse
      * @throws ManagerException
      */
-    protected function handleObjectSaveForm(FormInterface $form, callable $action, $validResponseData, bool $isCreationMode)
+    protected function handleObjectSaveForm(FormInterface $form, callable $action, bool $isCreationMode)
     {
         if (!$form->isValid()) {
-            return $this->createApiResponse(['message' => 'Validation error', 'error' => $this->getFormErrors($form)], 400);
+            return $this->createApiResponse(
+                [
+                    'message' => 'Validation error',
+                    'error' => $this->getFormErrors($form)
+                ],
+                Response::HTTP_BAD_REQUEST
+            );
         }
         
         try {
-            $action();
+            return new JsonResponse($action(), $isCreationMode ? Response::HTTP_CREATED : Response::HTTP_ACCEPTED);
 
         } catch (ManagerException $exception) {
 
             if ($exception->getCode() === ManagerException::ENTITY_ALREADY_EXISTS) {
-                return $this->createApiResponse(['message' => 'Object already exists', 'code' => $exception->getCode()], 400);
+                return $this->createApiResponse(
+                    [
+                        'message' => 'Object already exists',
+                        'code' => $exception->getCode()
+                    ],
+                    Response::HTTP_BAD_REQUEST
+                );
             }
 
             throw $exception;
         }
-
-        return new JsonResponse($validResponseData, $isCreationMode ? 201 : 202);
     }
 
     /**
@@ -162,6 +171,13 @@ abstract class AbstractController extends Controller
      */
     protected function getSerializationContext(): SerializationContext
     {
-        return (new SerializationContext())->setGroups(['public']);
+        return (new SerializationContext())->setGroups(
+            $this->isManagementContext() ? ['collective'] : ['public']
+        );
+    }
+
+    protected function isManagementContext(): bool
+    {
+        return strpos(get_class($this), 'App\\Controller\\Management\\') !== false;
     }
 }

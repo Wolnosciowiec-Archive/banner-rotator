@@ -1,4 +1,4 @@
-App\Entity\BannerGroup:
+App\Domain\Form\GroupForm:
     properties:
         id:
             - NotBlank: ~
@@ -16,3 +16,43 @@ App\Entity\BannerGroup:
             - Length:
                 min: 0
                 max: 9000
+
+        active:
+            - NotBlank: ~
+            - Type:
+                  type: bool
+            - Choice: [1, 0, true, false]
+
+App\Domain\Form\BannerForm:
+    properties:
+        id:
+            - NotBlank: ~
+            - Length:
+                  min: 3
+                  max: 16
+
+        url:
+            - Url: ~
+            - Length:
+                  min: 5
+                  max: 256
+            - NotBlank: ~
+
+        imageUrl:
+            - Url: ~
+            - Length:
+                  min: 5
+                  max: 256
+            - NotBlank: ~
+
+        title:
+            - NotBlank: ~
+            - Length:
+                min: 3
+                max: 254
+
+        description:
+            - Length:
+                min: 0
+                max: 9000
+

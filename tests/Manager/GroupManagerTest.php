@@ -2,10 +2,13 @@
 
 namespace App\Tests\Manager;
 
-use App\Entity\{BannerElement, BannerGroup};
-use App\Exception\{EntityNotFoundException, ManagerException, NotDeletableEntityException};
-use App\Manager\GroupManager;
-use App\Repository\BannerGroupRepository;
+use App\Domain\Entity\BannerElement;
+use App\Domain\Exception\EntityNotFoundException;
+use App\Domain\Entity\{BannerGroup};
+use App\Domain\Exception\ManagerException;
+use App\Domain\Exception\{NotDeletableEntityException};
+use App\Domain\Manager\GroupManager;
+use App\Repository\GroupDoctrineRepository;
 use App\Tests\TestCase;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\DBAL\Driver\PDOException;
@@ -33,7 +36,7 @@ class GroupManagerTest extends TestCase
         $em->expects($this->once())->method('persist')->willThrowException(new ConstraintViolationException('Constraint violation', $this->createMock(PDOException::class)));
 
         $manager = $this->createManager(function (MockBuilder $builder) use ($em) {
-            $builder->setConstructorArgs([$em, $this->createMock(BannerGroupRepository::class)]);
+            $builder->setConstructorArgs([$em, $this->createMock(GroupDoctrineRepository::class)]);
             $builder->setMethodsExcept(['save']);
         });
 
@@ -45,7 +48,7 @@ class GroupManagerTest extends TestCase
      * @see GroupManager::deleteById()
      *
      * @throws NotDeletableEntityException
-     * @throws \App\Exception\EntityNotFoundException
+     * @throws \App\Domain\Exception\EntityNotFoundException
      */
     public function test_deletes_only_when_no_dependent_banners_connected()
     {
@@ -53,7 +56,7 @@ class GroupManagerTest extends TestCase
         $this->expectException(NotDeletableEntityException::class);
 
         // preparation: The repository must return a group that has connected elements
-        $repository = $this->createMock(BannerGroupRepository::class);
+        $repository = $this->createMock(GroupDoctrineRepository::class);
         $repository->method('find')->willReturn(
             (new BannerGroup())
                 ->setElements(new ArrayCollection([
@@ -79,7 +82,7 @@ class GroupManagerTest extends TestCase
         // preparation:
         //   - the repository returns a object without dependencies
         //   - EntityManager is expecting a call to remove()
-        $repository = $this->createMock(BannerGroupRepository::class);
+        $repository = $this->createMock(GroupDoctrineRepository::class);
         $repository->method('find')->willReturn(
             (new BannerGroup())
                 ->setElements(new ArrayCollection([]))
@@ -99,25 +102,25 @@ class GroupManagerTest extends TestCase
 
 
     /**
-     * @see GroupManager::findOrCreateNew()
-     * @throws \App\Exception\EntityNotFoundException
+     * @see GroupManager::find()
+     * @throws \App\Domain\Exception\EntityNotFoundException
      */
     public function test_find_creates_new_group_with_proper_id()
     {
         // execute the action
         $manager = new GroupManager(
             $this->createMock(EntityManagerInterface::class),
-            $this->createMock(BannerGroupRepository::class)
+            $this->createMock(GroupDoctrineRepository::class)
         );
 
         $this->assertGroupHasId(
             'this-is-a-test-group-name',
-            $manager->findOrCreateNew('this-is-a-test-group-name', true)
+            $manager->find('this-is-a-test-group-name', true)
         );
     }
 
     /**
-     * @see GroupManager::findOrCreateNew()
+     * @see GroupManager::find()
      * @throws EntityNotFoundException
      */
     public function test_checks_existence_of_group_on_find()
@@ -126,7 +129,7 @@ class GroupManagerTest extends TestCase
         $this->expectException(EntityNotFoundException::class);
 
         // repository should not find any object
-        $repository = $this->createMock(BannerGroupRepository::class);
+        $repository = $this->createMock(GroupDoctrineRepository::class);
         $repository->method('find')->willReturn(null);
 
         $manager = new GroupManager(
@@ -134,7 +137,7 @@ class GroupManagerTest extends TestCase
             $repository
         );
 
-        $manager->findOrCreateNew('test-id', false);
+        $manager->find('test-id', false);
     }
 
     /**

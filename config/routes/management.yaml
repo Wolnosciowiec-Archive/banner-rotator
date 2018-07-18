@@ -2,42 +2,42 @@
 ## Groups
 admin.banner_group.list:
     path: /collective/group
-    controller: "App\\Controller\\Management\\ManageGroupsController::listGroupsAction"
+    controller: "App\\Controller\\Management\\GroupListController::handleGroupsListingAction"
     methods: ['GET']
 
 admin.banner_group.create:
     path: /collective/group/create
-    controller: "App\\Controller\\Management\\ManageGroupsController::createGroupAction"
+    controller: "App\\Controller\\Management\\GroupAddEditController::handleGroupCreationAction"
     methods: ['POST']
 
 admin.banner_group.modify:
     path: /collective/group/edit/{groupName}
-    controller: "App\\Controller\\Management\\ManageGroupsController::editGroupAction"
+    controller: "App\\Controller\\Management\\GroupAddEditController::handleGroupEditAction"
     methods: ['PUT']
 
 admin.banner_group.delete:
     path: /collective/group/{groupName}
-    controller: "App\\Controller\\Management\\ManageGroupsController::deleteAction"
+    controller: "App\\Controller\\Management\\GroupDeleteController::handleDeleteAction"
     methods: ['DELETE']
 
 
 ## Elements
 admin.banner_element.list:
     path: /collective/element/listing/{groupName}
-    controller: "App\\Controller\\Management\\ManageBannersController::listBannersAction"
+    controller: "App\\Controller\\Management\\BannerListController::listBannersAction"
     methods: ['GET']
 
 admin.banner_element.create:
     path: /collective/element/create/{groupName}
-    controller: "App\\Controller\\Management\\ManageBannersController::createBannerAction"
+    controller: "App\\Controller\\Management\\BannerAddEditController::createBannerAction"
     methods: ['POST']
 
 admin.banner_element.edit:
     path: /collective/element/edit/{bannerId}
-    controller: "App\\Controller\\Management\\ManageBannersController::editBannerAction"
+    controller: "App\\Controller\\Management\\BannerAddEditController::editBannerAction"
     methods: ['PUT']
 
 admin.banner_element.delete:
     path: /collective/element/{bannerId}
-    controller: "App\\Controller\\Management\\ManageBannersController::deleteAction"
+    controller: "App\\Controller\\Management\\BannerDeleteController::handleDeleteAction"
     methods: ['DELETE']

@@ -2,9 +2,11 @@
 
 namespace App\Tests\Manager;
 
-use App\Entity\{BannerElement, BannerGroup};
-use App\Exception\{EntityNotFoundException, ManagerException};
-use App\Repository\{BannerElementRepository, BannerGroupRepository};
+use App\Domain\Entity\BannerElement;
+use App\Domain\Exception\EntityNotFoundException;
+use App\Domain\Entity\{BannerGroup};
+use App\Domain\Exception\{ManagerException};
+use App\Repository\{BannerElementRepository, GroupDoctrineRepository};
 use App\Manager\BannerManager;
 use App\Tests\TestCase;
 use Doctrine\ORM\EntityManagerInterface;
@@ -42,10 +44,10 @@ class BannerManagerTest extends TestCase
         $manager = new BannerManager(
             $repository,
             $em,
-            $this->createMock(BannerGroupRepository::class)
+            $this->createMock(GroupDoctrineRepository::class)
         );
 
-        $this->assertValidBannerElement($manager->findOrCreateNew('test', false));
+        $this->assertValidBannerElement($manager->find('test', false));
     }
 
     /**
@@ -60,7 +62,7 @@ class BannerManagerTest extends TestCase
         $manager = new BannerManager(
             $repository,
             $em,
-            $this->createMock(BannerGroupRepository::class)
+            $this->createMock(GroupDoctrineRepository::class)
         );
 
         // asserts
@@ -84,7 +86,7 @@ class BannerManagerTest extends TestCase
     }
 
     /**
-     * @see BannerManager::findOrCreateNew()
+     * @see BannerManager::find()
      */
     public function test_throws_exception_when_find_does_not_find_anything()
     {
@@ -93,12 +95,12 @@ class BannerManagerTest extends TestCase
         // asserts
         $this->expectException(EntityNotFoundException::class);
 
-        $manager->findOrCreateNew('test', false);
+        $manager->find('test', false);
     }
 
     /**
-     * @see BannerManager::save()
-     * @throws \App\Exception\ManagerException
+     * @see BannerManager::storeChanges()
+     * @throws \App\Domain\Exception\ManagerException
      */
     public function test_asserts_that_element_belongs_to_group_when_saving()
     {
@@ -120,7 +122,7 @@ class BannerManagerTest extends TestCase
         $manager = new BannerManager(
             $repository,
             $em,
-            $this->createMock(BannerGroupRepository::class)
+            $this->createMock(GroupDoctrineRepository::class)
         );
 
         return $manager;
@@ -142,7 +144,7 @@ class BannerManagerTest extends TestCase
         $group = new BannerGroup();
         $group->setId('test');
 
-        $repository = $this->createMock(BannerGroupRepository::class);
+        $repository = $this->createMock(GroupDoctrineRepository::class);
         $repository->method('find')->willReturn($group);
         $manager->method('getGroupRepository')->willReturn($repository);
 

@@ -16,7 +16,7 @@ services:
     # this creates a service per class whose id is the fully-qualified class name
     App\:
         resource: '../src/*'
-        exclude: '../src/{Entity,Migrations,Tests}'
+        exclude: '../src/{Domain/Entity,Migrations}'
 
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
@@ -30,8 +30,8 @@ services:
     jms_serializer.serialized_name_annotation_strategy:
         class: JMS\Serializer\Naming\IdenticalPropertyNamingStrategy
 
-    App\Event\Listener\CorsListener:
-        class: App\Event\Listener\CorsListener
+    App\Infrastructure\Event\Listener\CorsListener:
+        class: App\Infrastructure\Event\Listener\CorsListener
         arguments:
             $allowOrigin: '%env(HEADER_ALLOW_ORIGIN)%'
             $allowCredentials: '%env(HEADER_ALLOW_CREDENTIALS)%'
