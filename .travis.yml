@@ -1,11 +1,12 @@
 language: php
 php:
   - '7.2'
+  - 'nightly'
 node_js:
   - "8.2.1"
 
 install:
-  - mkdir translations
+  - mkdir translations || true
   - npm install newman
   - make deploy
   - composer install --dev
