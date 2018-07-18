@@ -9,6 +9,11 @@ class BannerForm
     /**
      * @var string
      */
+    public $id;
+
+    /**
+     * @var string
+     */
     public $url;
 
     /**
