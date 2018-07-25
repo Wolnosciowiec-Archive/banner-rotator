@@ -8,7 +8,6 @@ use App\Domain\Repository\GroupRepository;
 use App\Domain\Exception\ManagerException;
 use App\Domain\Exception\NotDeletableEntityException;
 use Doctrine\DBAL\Exception\ConstraintViolationException;
-use Doctrine\ORM\EntityManagerInterface;
 
 /**
  * @see BannerGroup
@@ -20,7 +19,7 @@ class GroupManager
      */
     private $repository;
 
-    public function __construct(EntityManagerInterface $em, GroupRepository $repository)
+    public function __construct(GroupRepository $repository)
     {
         $this->repository = $repository;
     }

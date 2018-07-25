@@ -50,6 +50,10 @@ class BannerManager
         return $banner;
     }
 
+    /**
+     * @param string $bannerId
+     * @throws EntityNotFoundException
+     */
     public function deleteById(string $bannerId): void
     {
         $banner = $this->repository->assertFindById($bannerId);
@@ -58,6 +62,10 @@ class BannerManager
         $this->repository->flush($banner);
     }
 
+    /**
+     * @param BannerElement $banner
+     * @throws ManagerException
+     */
     public function storeChanges(BannerElement $banner): void
     {
         if (!$banner instanceof BannerElement) {

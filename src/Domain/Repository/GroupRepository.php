@@ -3,12 +3,14 @@
 namespace App\Domain\Repository;
 
 use App\Domain\Entity\BannerGroup;
+use App\Domain\Exception\EntityNotFoundException;
 
 interface GroupRepository
 {
     /**
      * @param string $groupId
      *
+     * @throws EntityNotFoundException
      * @return BannerGroup
      */
     public function assertFindById(string $groupId): BannerGroup;
