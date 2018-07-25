@@ -2,8 +2,9 @@
 
 namespace App\Domain\Exception;
 
-use App\Domain\Exception\DataPersistenceException;
-
+/**
+ * @codeCoverageIgnore
+ */
 class NotDeletableEntityException extends DataPersistenceException
 {
     const AT_LEAST_ONE_ITEM_EXISTING = 60001;

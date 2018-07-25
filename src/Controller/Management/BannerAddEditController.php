@@ -4,10 +4,12 @@ namespace App\Controller\Management;
 
 use App\Controller\AbstractController;
 use App\Domain\ActionHandler\BannerAddEditAction;
+use App\Domain\Exception\ManagerException;
 use App\Domain\Form\BannerForm;
 use App\Domain\Entity\BannerElement;
 use App\Domain\Exception\EntityNotFoundException;
 use App\Infrastructure\Form\BannerFormType;
+use App\Infrastructure\Form\NewBannerFormType;
 use Symfony\Component\HttpFoundation\Request;
 use Swagger\Annotations\Parameter;
 use Swagger\Annotations\Response as SWGResponse;
@@ -50,13 +52,13 @@ class BannerAddEditController extends AbstractController
      * )
      *
      * @return Response
-     * @throws \App\Domain\Exception\ManagerException
+     * @throws ManagerException
      * @throws EntityNotFoundException
      */
     public function createBannerAction(Request $request, string $groupName): Response
     {
         $form = new BannerForm();
-        $infrastructureForm = $this->createPreparedForm($request, $form, BannerFormType::class);
+        $infrastructureForm = $this->createPreparedForm($request, $form, NewBannerFormType::class);
 
         return $this->handleObjectSaveForm(
             $infrastructureForm,
@@ -93,7 +95,7 @@ class BannerAddEditController extends AbstractController
      * @param string $bannerId
      *
      * @return Response
-     * @throws \App\Domain\Exception\ManagerException
+     * @throws ManagerException
      */
     public function editBannerAction(Request $request, string $bannerId): Response
     {
@@ -105,7 +107,7 @@ class BannerAddEditController extends AbstractController
             function () use ($form, $bannerId) {
                 return $this->handler->handleEdit($form, $bannerId);
             },
-            true
+            false
         );
     }
 }

@@ -2,8 +2,9 @@
 
 namespace App\Domain\Exception;
 
-use App\Domain\Exception\ApplicationException;
-
+/**
+ * @codeCoverageIgnore
+ */
 class EntityNotFoundException extends ApplicationException
 {
 }

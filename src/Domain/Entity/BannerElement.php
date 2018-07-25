@@ -62,6 +62,8 @@ class BannerElement implements \JsonSerializable
     }
 
     /**
+     * @codeCoverageIgnore
+     *
      * @return string
      */
     public function getId()
@@ -70,6 +72,8 @@ class BannerElement implements \JsonSerializable
     }
 
     /**
+     * @codeCoverageIgnore
+     *
      * @return string
      */
     public function getUrl(): string
@@ -78,6 +82,8 @@ class BannerElement implements \JsonSerializable
     }
 
     /**
+     * @codeCoverageIgnore
+     *
      * @return string
      */
     public function getImageUrl(): string
@@ -86,6 +92,8 @@ class BannerElement implements \JsonSerializable
     }
 
     /**
+     * @codeCoverageIgnore
+     *
      * @return \DateTimeImmutable|null
      */
     public function getDateAdded(): ?\DateTimeImmutable
@@ -94,6 +102,8 @@ class BannerElement implements \JsonSerializable
     }
 
     /**
+     * @codeCoverageIgnore
+     *
      * @return string
      */
     public function getDescription(): string
@@ -102,6 +112,8 @@ class BannerElement implements \JsonSerializable
     }
 
     /**
+     * @codeCoverageIgnore
+     *
      * @return BannerGroup|null
      */
     public function getBannerGroup(): ?BannerGroup
@@ -110,6 +122,8 @@ class BannerElement implements \JsonSerializable
     }
 
     /**
+     * @codeCoverageIgnore
+     *
      * @return \DateTime|null
      */
     public function getExpiresAt(): ?\DateTime
@@ -118,6 +132,8 @@ class BannerElement implements \JsonSerializable
     }
 
     /**
+     * @codeCoverageIgnore
+     *
      * @return bool
      */
     public function isActive(): bool
@@ -126,6 +142,8 @@ class BannerElement implements \JsonSerializable
     }
 
     /**
+     * @codeCoverageIgnore
+     *
      * @param string $url
      * @return BannerElement
      */
@@ -136,6 +154,8 @@ class BannerElement implements \JsonSerializable
     }
 
     /**
+     * @codeCoverageIgnore
+     *
      * @param string $imageUrl
      * @return BannerElement
      */
@@ -146,6 +166,8 @@ class BannerElement implements \JsonSerializable
     }
 
     /**
+     * @codeCoverageIgnore
+     *
      * @param \DateTimeImmutable $dateAdded
      *
      * @return BannerElement
@@ -157,6 +179,8 @@ class BannerElement implements \JsonSerializable
     }
 
     /**
+     * @codeCoverageIgnore
+     *
      * @param string $description
      *
      * @return BannerElement
@@ -168,6 +192,8 @@ class BannerElement implements \JsonSerializable
     }
 
     /**
+     * @codeCoverageIgnore
+     *
      * @param BannerGroup $group
      *
      * @return BannerElement
@@ -179,6 +205,8 @@ class BannerElement implements \JsonSerializable
     }
 
     /**
+     * @codeCoverageIgnore
+     *
      * @param \DateTime|null $expiresAt
      *
      * @return BannerElement
@@ -190,6 +218,8 @@ class BannerElement implements \JsonSerializable
     }
 
     /**
+     * @codeCoverageIgnore
+     *
      * @param bool $active
      *
      * @return BannerElement
@@ -201,6 +231,8 @@ class BannerElement implements \JsonSerializable
     }
 
     /**
+     * @codeCoverageIgnore
+     *
      * @param string $id
      *
      * @return BannerElement
@@ -228,6 +260,8 @@ class BannerElement implements \JsonSerializable
     }
 
     /**
+     * @codeCoverageIgnore
+     *
      * @return string
      */
     public function getTitle(): string
@@ -236,6 +270,8 @@ class BannerElement implements \JsonSerializable
     }
 
     /**
+     * @codeCoverageIgnore
+     *
      * @return bool
      */
     public function hasImage(): bool
@@ -244,6 +280,8 @@ class BannerElement implements \JsonSerializable
     }
 
     /**
+     * @codeCoverageIgnore
+     *
      * @param string $title
      *
      * @return BannerElement

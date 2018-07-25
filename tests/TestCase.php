@@ -4,8 +4,9 @@ namespace App\Tests;
 
 use App\Domain\Entity\BannerElement;
 use App\Domain\Entity\BannerGroup;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-abstract class TestCase extends \PHPUnit\Framework\TestCase
+abstract class TestCase extends WebTestCase
 {
     /**
      * @param string $group

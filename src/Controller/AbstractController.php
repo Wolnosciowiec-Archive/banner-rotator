@@ -7,8 +7,10 @@ use JMS\Serializer\SerializationContext;
 use JMS\Serializer\Serializer;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Form;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\{JsonResponse, Request, Response};
+use Symfony\Component\Validator\ConstraintViolation;
 
 abstract class AbstractController extends Controller
 {
@@ -100,18 +102,23 @@ abstract class AbstractController extends Controller
      */
     protected function getFormErrors(FormInterface $form)
     {
-        $errors = array();
+        $errors = [];
 
-        // Global
+        // global
         foreach ($form->getErrors() as $error) {
+            if ($error->getCause() instanceof ConstraintViolation) {
+                $errors[(string) $error->getCause()->getPropertyPath()][] = $error->getMessage();
+                continue;
+            }
+
             $errors[$form->getName()][] = $error->getMessage();
         }
 
-        // Fields
+        // fields
         foreach ($form as $child /** @var Form $child */) {
             if (!$child->isValid()) {
                 foreach ($child->getErrors() as $error) {
-                    $errors[$child->getName()][] = $error->getMessage();
+                    $errors[(string) $child->getPropertyPath()][] = $error->getMessage();
                 }
             }
         }

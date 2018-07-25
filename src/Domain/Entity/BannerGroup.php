@@ -2,7 +2,6 @@
 
 namespace App\Domain\Entity;
 
-use App\Domain\Entity\BannerElement;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
@@ -52,6 +51,8 @@ class BannerGroup implements \JsonSerializable
     }
 
     /**
+     * @codeCoverageIgnore
+     *
      * @return null|string
      */
     public function getId(): ?string
@@ -60,6 +61,8 @@ class BannerGroup implements \JsonSerializable
     }
 
     /**
+     * @codeCoverageIgnore
+     *
      * @return string
      */
     public function getTitle(): string
@@ -68,6 +71,8 @@ class BannerGroup implements \JsonSerializable
     }
 
     /**
+     * @codeCoverageIgnore
+     *
      * @return bool
      */
     public function isActive(): bool
@@ -76,6 +81,8 @@ class BannerGroup implements \JsonSerializable
     }
 
     /**
+     * @codeCoverageIgnore
+     *
      * @return \DateTimeImmutable|null
      */
     public function getDateAdded(): ?\DateTimeImmutable
@@ -84,6 +91,8 @@ class BannerGroup implements \JsonSerializable
     }
 
     /**
+     * @codeCoverageIgnore
+     *
      * @return string
      */
     public function getDescription(): string
@@ -104,6 +113,8 @@ class BannerGroup implements \JsonSerializable
     }
 
     /**
+     * @codeCoverageIgnore
+     *
      * @return BannerElement[]|ArrayCollection
      */
     public function getElements()
@@ -112,6 +123,8 @@ class BannerGroup implements \JsonSerializable
     }
 
     /**
+     * @codeCoverageIgnore
+     *
      * @param string $title
      * @return BannerGroup
      */
@@ -122,6 +135,8 @@ class BannerGroup implements \JsonSerializable
     }
 
     /**
+     * @codeCoverageIgnore
+     *
      * @param bool $active
      * @return BannerGroup
      */
@@ -132,6 +147,8 @@ class BannerGroup implements \JsonSerializable
     }
 
     /**
+     * @codeCoverageIgnore
+     *
      * @param string $description
      * @return BannerGroup
      */
@@ -142,6 +159,8 @@ class BannerGroup implements \JsonSerializable
     }
 
     /**
+     * @codeCoverageIgnore
+     *
      * @param string $id
      * @return BannerGroup
      */
@@ -152,10 +171,12 @@ class BannerGroup implements \JsonSerializable
     }
 
     /**
+     * @codeCoverageIgnore
+     *
      * @param BannerElement[]|ArrayCollection $elements
      * @return BannerGroup
      */
-    public function setElements($elements)
+    public function setElements($elements): BannerGroup
     {
         $this->elements = $elements;
         return $this;

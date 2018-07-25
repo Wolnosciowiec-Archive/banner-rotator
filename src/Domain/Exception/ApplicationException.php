@@ -2,6 +2,9 @@
 
 namespace App\Domain\Exception;
 
+/**
+ * @codeCoverageIgnore
+ */
 class ApplicationException extends \Exception
 {
 }

@@ -8,6 +8,7 @@ use App\Domain\Entity\BannerGroup;
 use App\Domain\Exception\ManagerException;
 use App\Domain\Form\GroupForm;
 use App\Infrastructure\Form\GroupFormType;
+use App\Infrastructure\Form\NewBannerFormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Swagger\Annotations\Response as SWGResponse;
@@ -55,7 +56,7 @@ class GroupAddEditController extends AbstractController
     public function handleGroupEditAction(Request $request, string $groupName): Response
     {
         $form = new GroupForm();
-        $infrastructureForm = $this->createPreparedForm($request, $form, GroupFormType::class);
+        $infrastructureForm = $this->createPreparedForm($request, $form, NewBannerFormType::class);
 
         return $this->handleObjectSaveForm(
             $infrastructureForm,

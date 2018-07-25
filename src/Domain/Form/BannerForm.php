@@ -4,6 +4,9 @@ namespace App\Domain\Form;
 
 use App\Domain\Entity\BannerElement;
 
+/**
+ * @codeCoverageIgnore
+ */
 class BannerForm
 {
     /**
@@ -45,12 +48,21 @@ class BannerForm
      * Rewrites the form to the entity
      *
      * @param BannerElement $element
+     * @throws \Exception
      */
     public function mapFormToBanner(BannerElement $element): void
     {
+        if ($this->id) {
+            $element->setId($this->id);
+        }
+
         $element->setUrl($this->url);
         $element->setImageUrl($this->imageUrl);
-        $element->setDateAdded(new \DateTimeImmutable('now'));
+
+        if (!$element->getDateAdded()) {
+            $element->setDateAdded(new \DateTimeImmutable('now'));
+        }
+
         $element->setExpiresAt($this->expiresAt);
         $element->setActive($this->active);
         $element->setDescription($this->description);

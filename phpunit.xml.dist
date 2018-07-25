@@ -14,6 +14,11 @@
         <env name="APP_DEBUG" value="1" />
         <env name="APP_SECRET" value="s$cretf0rt3st" />
         <env name="SHELL_VERBOSITY" value="-1" />
+        <env name="HEADER_ALLOW_ORIGIN" value="*" />
+        <env name="HEADER_ALLOW_CREDENTIALS" value="" />
+        <env name="HEADER_MAX_AGE" value="3600" />
+        <env name="HEADER_ALLOW_METHODS" value="GET, POST, PUT, DELETE, PATCH" />
+        <env name="HEADER_ALLOW_HEADERS" value="*" />
         <!-- define your env variables for the test env here -->
     </php>
 

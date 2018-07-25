@@ -4,6 +4,9 @@ namespace App\Domain\Form;
 
 use App\Domain\Entity\BannerGroup;
 
+/**
+ * @codeCoverageIgnore
+ */
 class GroupForm
 {
     /**
@@ -28,6 +31,10 @@ class GroupForm
 
     public function mapToGroup(BannerGroup $group): void
     {
+        if ($this->id) {
+            $group->setId($this->id);
+        }
+
         $group->setActive($this->active);
         $group->setTitle($this->title);
         $group->setDescription($this->description);

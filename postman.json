@@ -149,7 +149,7 @@
 			"response": []
 		},
 		{
-			"name": "/collective/element/edit/anarchizm/{bannerId}",
+			"name": "/collective/element/edit/{bannerId}",
 			"request": {
 				"method": "PUT",
 				"header": [],
