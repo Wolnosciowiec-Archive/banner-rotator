@@ -4,6 +4,7 @@ namespace App\Domain\ActionHandler;
 
 use App\Domain\Entity\BannerGroup;
 use App\Domain\Form\GroupForm;
+use App\Domain\Form\NewGroupForm;
 use App\Domain\Repository\GroupRepository;
 use App\Domain\Manager\GroupManager;
 
@@ -34,7 +35,7 @@ class GroupAddEditAction
         return $group;
     }
 
-    public function handleGroupCreation(GroupForm $form, string $groupId): BannerGroup
+    public function handleGroupCreation(NewGroupForm $form, string $groupId): BannerGroup
     {
         $group = new BannerGroup();
         $group->setId($groupId);

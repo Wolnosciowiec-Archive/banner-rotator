@@ -11,3 +11,11 @@ services:
     App\Domain\ActionHandler\BannerAddEditAction:
         public: true
         autowire: true
+
+    App\Domain\ActionHandler\BannerDeleteAction:
+        public: true
+        autowire: true
+
+    App\Domain\ActionHandler\BannerListAction:
+        public: true
+        autowire: true

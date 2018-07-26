@@ -3,9 +3,10 @@
 namespace App\Infrastructure\Form;
 
 use App\Domain\Entity\BannerGroup;
-use App\Form\BannerGroupForm;
+use App\Domain\Form\NewGroupForm;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * @see BannerGroup
@@ -17,5 +18,12 @@ class NewGroupFormType extends GroupFormType
         parent::buildForm($builder, $options);
 
         $builder->add('id', TextType::class);
+    }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'data_class'    => NewGroupForm::class
+        ]);
     }
 }

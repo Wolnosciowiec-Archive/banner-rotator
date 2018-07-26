@@ -12,11 +12,6 @@ class BannerForm
     /**
      * @var string
      */
-    public $id;
-
-    /**
-     * @var string
-     */
     public $url;
 
     /**
@@ -52,10 +47,6 @@ class BannerForm
      */
     public function mapFormToBanner(BannerElement $element): void
     {
-        if ($this->id) {
-            $element->setId($this->id);
-        }
-
         $element->setUrl($this->url);
         $element->setImageUrl($this->imageUrl);
 

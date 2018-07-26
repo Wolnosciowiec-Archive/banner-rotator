@@ -20,14 +20,18 @@ App\Domain\Form\GroupForm:
 App\Domain\Form\BannerForm:
     properties:
         url:
-            - Url: ~
+            - Url:
+                  protocols: ['http', 'https']
+                  relativeProtocol: false
             - Length:
                   min: 5
                   max: 256
             - NotBlank: ~
 
         imageUrl:
-            - Url: ~
+            - Url:
+                  protocols: ['http', 'https']
+                  relativeProtocol: false
             - Length:
                   min: 5
                   max: 256
@@ -53,10 +57,10 @@ App\Domain\Form\BannerForm:
 App\Domain\Form\NewGroupForm:
     properties:
         id:
-        - NotBlank: ~
-        - Length:
-              min: 3
-              max: 16
+            - NotBlank: ~
+            - Length:
+                  min: 3
+                  max: 16
 
 App\Domain\Form\NewBannerForm:
     properties:

@@ -8,6 +8,7 @@ use App\Domain\Exception\ManagerException;
 use App\Domain\Form\BannerForm;
 use App\Domain\Entity\BannerElement;
 use App\Domain\Exception\EntityNotFoundException;
+use App\Domain\Form\NewBannerForm;
 use App\Infrastructure\Form\BannerFormType;
 use App\Infrastructure\Form\NewBannerFormType;
 use Symfony\Component\HttpFoundation\Request;
@@ -57,7 +58,7 @@ class BannerAddEditController extends AbstractController
      */
     public function createBannerAction(Request $request, string $groupName): Response
     {
-        $form = new BannerForm();
+        $form = new NewBannerForm();
         $infrastructureForm = $this->createPreparedForm($request, $form, NewBannerFormType::class);
 
         return $this->handleObjectSaveForm(

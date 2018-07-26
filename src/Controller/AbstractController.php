@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Domain\Exception\EntityNotFoundException;
 use App\Domain\Exception\ManagerException;
 use JMS\Serializer\SerializationContext;
 use JMS\Serializer\Serializer;
@@ -21,17 +22,14 @@ abstract class AbstractController extends Controller
      * @param Request $request
      * @param mixed   $object
      * @param string  $formClassName
-     * @param array   $options
      *
      * @return FormInterface
      */
-    protected function createPreparedForm(Request $request, $object, string $formClassName, array $options = []): FormInterface
+    protected function createPreparedForm(Request $request, $object, string $formClassName): FormInterface
     {
         $data = json_decode($request->getContent(), true);
 
-        $form = $this->createForm($formClassName, $object, [
-            'trait_choices' => $options,
-        ]);
+        $form = $this->createForm($formClassName, $object);
         $form->submit($data);
 
         return $form;
@@ -42,10 +40,10 @@ abstract class AbstractController extends Controller
      * @param callable      $action
      * @param bool          $isCreationMode
      *
-     * @return JsonResponse
+     * @return Response
      * @throws ManagerException
      */
-    protected function handleObjectSaveForm(FormInterface $form, callable $action, bool $isCreationMode)
+    protected function handleObjectSaveForm(FormInterface $form, callable $action, bool $isCreationMode): Response
     {
         if (!$form->isValid()) {
             return $this->createApiResponse(
@@ -59,6 +57,9 @@ abstract class AbstractController extends Controller
         
         try {
             return new JsonResponse($action(), $isCreationMode ? Response::HTTP_CREATED : Response::HTTP_ACCEPTED);
+
+        } catch (EntityNotFoundException $exception) {
+            return $this->getEntityNotFoundResponse();
 
         } catch (ManagerException $exception) {
 
@@ -185,6 +186,6 @@ abstract class AbstractController extends Controller
 
     protected function isManagementContext(): bool
     {
-        return strpos(get_class($this), 'App\\Controller\\Management\\') !== false;
+        return strpos(\get_class($this), 'App\\Controller\\Management\\') !== false;
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Domain\ActionHandler;
 
 use App\Domain\Form\BannerForm;
+use App\Domain\Form\NewBannerForm;
 use App\Domain\Repository\BannerRepository;
 use App\Domain\Manager\BannerManager;
 use App\Domain\Entity\BannerElement;
@@ -39,7 +40,7 @@ class BannerAddEditAction
         return $banner;
     }
 
-    public function handleNew(BannerForm $form, string $groupName): BannerElement
+    public function handleNew(NewBannerForm $form, string $groupName): BannerElement
     {
         $banner = $this->manager->createForGroup($groupName);
         $form->mapFormToBanner($banner);

@@ -11,11 +11,6 @@ use App\Domain\Repository\GroupRepository;
 class BannerListAction
 {
     /**
-     * @var BannerManager
-     */
-    protected $manager;
-
-    /**
      * @var GroupRepository
      */
     protected $groupRepository;
@@ -26,11 +21,9 @@ class BannerListAction
     protected $bannerRepository;
     
     public function __construct(
-        BannerManager $manager,
         GroupRepository $groupRepository,
         BannerRepository $bannerRepository
     ) {
-        $this->manager = $manager;
         $this->groupRepository = $groupRepository;
         $this->bannerRepository = $bannerRepository;
     }
