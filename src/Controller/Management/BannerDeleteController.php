@@ -48,16 +48,7 @@ class BannerDeleteController extends AbstractController
     public function handleDeleteAction(string $bannerId): Response
     {
         try {
-            return $this->createApiResponse($this->handler->handle($bannerId),  Response::HTTP_OK);
-
-        } catch (NotDeletableEntityException $exception) {
-            return new JsonResponse(
-                [
-                    'message' => 'This object cannot be deleted, existing elements are under it',
-                    'code' => $exception->getCode()
-                ],
-                Response::HTTP_UNPROCESSABLE_ENTITY
-            );
+            return $this->createApiResponse($this->handler->handle($bannerId), Response::HTTP_OK);
 
         } catch (EntityNotFoundException $exception) {
             return $this->getEntityNotFoundResponse();

@@ -63,7 +63,6 @@ class BannerDeleteControllerTest extends TestCase
         $client->request('DELETE', '/collective/element/cnt-cit');
 
         // assert valid response
-        $this->assertSame(200, $client->getResponse()->getStatusCode());
-        $this->assertSame('{"message":"OK"}', $client->getResponse()->getContent());
+        $this->assertOKTypeResponse($client->getResponse());
     }
 }

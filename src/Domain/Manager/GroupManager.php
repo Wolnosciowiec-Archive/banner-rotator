@@ -28,7 +28,7 @@ class GroupManager
      * @param BannerGroup $group
      * @throws ManagerException
      */
-    public function storeChanges($group): void
+    public function storeChanges(BannerGroup $group): void
     {
         try {
             $this->repository->persist($group);

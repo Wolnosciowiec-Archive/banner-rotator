@@ -10,12 +10,19 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class GroupDoctrineRepository extends ServiceEntityRepository implements GroupRepository
 {
+    /**
+     * @codeCoverageIgnore
+     *
+     * @param RegistryInterface $registry
+     */
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, BannerGroup::class);
     }
 
     /**
+     * @codeCoverageIgnore
+     *
      * {@inheritdoc}
      *
      * @return null|BannerGroup|object
@@ -26,6 +33,8 @@ class GroupDoctrineRepository extends ServiceEntityRepository implements GroupRe
     }
 
     /**
+     * @codeCoverageIgnore
+     *
      * {@inheritdoc}
      */
     public function findAll(): array
@@ -34,6 +43,8 @@ class GroupDoctrineRepository extends ServiceEntityRepository implements GroupRe
     }
 
     /**
+     * @codeCoverageIgnore
+     *
      * {@inheritdoc}
      */
     public function assertFindById(string $groupId): BannerGroup
@@ -49,6 +60,8 @@ class GroupDoctrineRepository extends ServiceEntityRepository implements GroupRe
     }
 
     /**
+     * @codeCoverageIgnore
+     *
      * {@inheritdoc}
      */
     public function persist(BannerGroup $group): void
@@ -57,6 +70,8 @@ class GroupDoctrineRepository extends ServiceEntityRepository implements GroupRe
     }
 
     /**
+     * @codeCoverageIgnore
+     *
      * {@inheritdoc}
      */
     public function flush(BannerGroup $group = null): void
@@ -65,6 +80,8 @@ class GroupDoctrineRepository extends ServiceEntityRepository implements GroupRe
     }
 
     /**
+     * @codeCoverageIgnore
+     *
      * {@inheritdoc}
      */
     public function remove(BannerGroup $group): void

@@ -25,8 +25,7 @@ class GroupFormType extends AbstractType
             ])
             ->add('description', TextType::class, [
                 'empty_data' => '',
-            ])
-            ->add('id', TextType::class);
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

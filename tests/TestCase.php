@@ -52,6 +52,16 @@ abstract class TestCase extends WebTestCase
         ];
     }
 
+    protected function getValidGroupRequestWithoutId(): array
+    {
+        return [
+            'active' => true,
+            'title'  => 'Anarchism',
+            'description' => 'Anarchism is about to create a self-organizing society based on direct-democracy, ' .
+                             'without nationalism, racism and non-natural political borders'
+        ];
+    }
+
     protected function getExampleBanner(): BannerElement
     {
         /**
@@ -72,5 +82,17 @@ abstract class TestCase extends WebTestCase
     {
         $this->assertSame(404, $response->getStatusCode());
         $this->assertSame('{"message":"Object not found"}', $response->getContent());
+    }
+
+    protected function assertOKTypeResponse(Response $response): void
+    {
+        $this->assertSame(200, $response->getStatusCode());
+        $this->assertSame('{"message":"OK"}', $response->getContent());
+    }
+
+    protected function assertNotDeletableResponse(Response $response): void
+    {
+        $this->assertSame(422, $response->getStatusCode());
+        $this->assertSame(60001, json_decode($response->getContent(), true)['code']);
     }
 }

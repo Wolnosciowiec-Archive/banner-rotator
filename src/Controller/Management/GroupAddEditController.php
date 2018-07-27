@@ -9,7 +9,6 @@ use App\Domain\Exception\ManagerException;
 use App\Domain\Form\GroupForm;
 use App\Domain\Form\NewGroupForm;
 use App\Infrastructure\Form\GroupFormType;
-use App\Infrastructure\Form\NewBannerFormType;
 use App\Infrastructure\Form\NewGroupFormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -65,7 +64,7 @@ class GroupAddEditController extends AbstractController
             function () use ($form, $groupName) {
                 return $this->handler->handleGroupEdit($form, $groupName);
             },
-            true
+            false
         );
     }
 

@@ -19,3 +19,15 @@ services:
     App\Domain\ActionHandler\BannerListAction:
         public: true
         autowire: true
+
+    App\Domain\ActionHandler\GroupDeleteAction:
+        public: true
+        autowire: true
+
+    App\Domain\ActionHandler\GroupListAction:
+        public: true
+        autowire: true
+
+    App\Domain\ActionHandler\GroupAddEditAction:
+        public: true
+        autowire: true

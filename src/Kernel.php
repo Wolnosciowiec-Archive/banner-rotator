@@ -3,6 +3,7 @@
 namespace App;
 
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
+use Symfony\Component\Config\Exception\FileLoaderLoadException;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;
@@ -47,6 +48,12 @@ class Kernel extends BaseKernel
         $loader->load($confDir.'/services_'.$this->environment.self::CONFIG_EXTS, 'glob');
     }
 
+    /**
+     * @codeCoverageIgnore
+     *
+     * @param RouteCollectionBuilder $routes
+     * @throws FileLoaderLoadException
+     */
     protected function configureRoutes(RouteCollectionBuilder $routes)
     {
         $confDir = $this->getProjectDir().'/config';

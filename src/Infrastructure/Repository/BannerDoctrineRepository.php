@@ -11,6 +11,11 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class BannerDoctrineRepository extends ServiceEntityRepository implements BannerRepository
 {
+    /**
+     * @codeCoverageIgnore
+     *
+     * @param RegistryInterface $registry
+     */
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, BannerElement::class);
@@ -42,6 +47,8 @@ class BannerDoctrineRepository extends ServiceEntityRepository implements Banner
     }
 
     /**
+     * @codeCoverageIgnore
+     *
      * {@inheritdoc}
      */
     public function assertFindById(string $id): BannerElement
@@ -57,6 +64,8 @@ class BannerDoctrineRepository extends ServiceEntityRepository implements Banner
     }
 
     /**
+     * @codeCoverageIgnore
+     *
      * {@inheritdoc}
      */
     public function persist(BannerElement $element): void
@@ -65,6 +74,8 @@ class BannerDoctrineRepository extends ServiceEntityRepository implements Banner
     }
 
     /**
+     * @codeCoverageIgnore
+     *
      * {@inheritdoc}
      */
     public function flush(BannerElement $element = null): void
@@ -73,6 +84,8 @@ class BannerDoctrineRepository extends ServiceEntityRepository implements Banner
     }
 
     /**
+     * @codeCoverageIgnore
+     *
      * {@inheritdoc}
      */
     public function remove(BannerElement $element): void

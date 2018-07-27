@@ -7,7 +7,9 @@ Banner Rotator
 
 Banner rotating service. Outputs a list of banners in HTML and JSON formats, has an API documentation.
 
-###### Made for the Anarchist movement
+###### Originally made for the Anarchist movement
+
+The project was made on a request of Anarchist Federation. It is published on a free license to use for everyone.
 
 #### Quick start
 
@@ -30,5 +32,15 @@ Please take a look at the `ENV` section of a [Dockerfile](./Dockerfile.x86_64) t
 to configure your application.
 
 ```
-sudo docker run -e DATABASE_URL="sqlite:///%kernel.project_dir%/var/data.db" -e SITE_TITLE="List of grassroot, libertarian trade unions" -d --rm --name nfp wolnosciowiec/news-feed-provider 
+sudo docker run -e DATABASE_URL="sqlite:///%kernel.project_dir%/var/data.db" -e SITE_TITLE="List of grassroot, libertarian trade unions" -d --rm --name nfp wolnosciowiec/banner-rotator
+```
+
+You can also build a docker image by yourself that will be tagged the same as it is on docker hub.
+
+```
+# for regular x86_64 (amd64)
+make build@x86_64
+
+# for ARMv7 architecture
+make build@arm7hf
 ```

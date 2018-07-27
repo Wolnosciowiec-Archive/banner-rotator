@@ -68,10 +68,6 @@ class BannerManager
      */
     public function storeChanges(BannerElement $banner): void
     {
-        if (!$banner instanceof BannerElement) {
-            return;
-        }
-
         if (!$banner->getBannerGroup() instanceof BannerGroup) {
             throw new ManagerException('Missing banner group association');
         }
