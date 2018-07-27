@@ -4,7 +4,7 @@ namespace App\Domain\ValueObject\Annotation;
 
 /**
  * @Annotation
- * @CodeCoverageIgnore
+ * @codeCoverageIgnore
  */
 class ObjectsList implements \JsonSerializable
 {
