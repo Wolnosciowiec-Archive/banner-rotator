@@ -1,12 +1,12 @@
 
 public.json:
     path: /public/browse/{groupName}.json
-    controller: "App\\Controller\\PublicSide\\BrowseController:browseJsonAction"
+    controller: "App\\Controller\\PublicSide\\BrowseController::browseJsonAction"
     methods: ['GET']
 
 public.html:
     path: /public/browse/{groupName}.html
-    controller: "App\\Controller\\PublicSide\\BrowseController:browseRenderedAction"
+    controller: "App\\Controller\\PublicSide\\BrowseController::browseRenderedAction"
     methods: ['GET']
 
 public.main_page:
