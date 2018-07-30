@@ -1171,23 +1171,23 @@
         },
         {
             "name": "exsyst/swagger",
-            "version": "v0.4.0",
+            "version": "v0.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/GuilhemN/swagger.git",
-                "reference": "9e3a92833ee8489db899607f72deec7d7995e050"
+                "reference": "a02984db5edacdce2b4e09dae5ba8fe17a0e449e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GuilhemN/swagger/zipball/9e3a92833ee8489db899607f72deec7d7995e050",
-                "reference": "9e3a92833ee8489db899607f72deec7d7995e050",
+                "url": "https://api.github.com/repos/GuilhemN/swagger/zipball/a02984db5edacdce2b4e09dae5ba8fe17a0e449e",
+                "reference": "a02984db5edacdce2b4e09dae5ba8fe17a0e449e",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^5.0"
+                "phpunit/phpunit": "^6.5"
             },
             "type": "library",
             "autoload": {
@@ -1206,7 +1206,7 @@
                 }
             ],
             "description": "A php library to manipulate Swagger specifications",
-            "time": "2018-02-03T12:20:03+00:00"
+            "time": "2018-07-27T06:40:00+00:00"
         },
         {
             "name": "jdorn/sql-formatter",
@@ -1508,12 +1508,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nelmio/NelmioApiDocBundle.git",
-                "reference": "29f3042754ea19a67142687411702b6189bec831"
+                "reference": "619ae0d5aee31b58e77bad503f3c861b2adb2bf6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nelmio/NelmioApiDocBundle/zipball/29f3042754ea19a67142687411702b6189bec831",
-                "reference": "29f3042754ea19a67142687411702b6189bec831",
+                "url": "https://api.github.com/repos/nelmio/NelmioApiDocBundle/zipball/619ae0d5aee31b58e77bad503f3c861b2adb2bf6",
+                "reference": "619ae0d5aee31b58e77bad503f3c861b2adb2bf6",
                 "shasum": ""
             },
             "require": {
@@ -1583,7 +1583,7 @@
                 "documentation",
                 "rest"
             ],
-            "time": "2018-07-25T15:58:28+00:00"
+            "time": "2018-07-27T06:30:22+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -3119,16 +3119,16 @@
         },
         {
             "name": "symfony/flex",
-            "version": "v1.0.85",
+            "version": "v1.0.89",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/flex.git",
-                "reference": "48bf0eddadb004f95f6875b533ff1fb234bfc3f4"
+                "reference": "26be754f42c3c3f21139af2bdd74118ef8f82757"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/flex/zipball/48bf0eddadb004f95f6875b533ff1fb234bfc3f4",
-                "reference": "48bf0eddadb004f95f6875b533ff1fb234bfc3f4",
+                "url": "https://api.github.com/repos/symfony/flex/zipball/26be754f42c3c3f21139af2bdd74118ef8f82757",
+                "reference": "26be754f42c3c3f21139af2bdd74118ef8f82757",
                 "shasum": ""
             },
             "require": {
@@ -3162,7 +3162,7 @@
                 }
             ],
             "description": "Composer plugin for Symfony",
-            "time": "2018-07-25T09:16:52+00:00"
+            "time": "2018-07-29T16:20:30+00:00"
         },
         {
             "name": "symfony/form",
