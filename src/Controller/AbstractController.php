@@ -86,15 +86,6 @@ abstract class AbstractController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @return bool
-     */
-    protected function hasRequestedObjectCreation(Request $request): bool
-    {
-        return $request->getMethod() === 'POST';
-    }
-
-    /**
      * List all errors of a given bound form.
      *
      * @param FormInterface $form
