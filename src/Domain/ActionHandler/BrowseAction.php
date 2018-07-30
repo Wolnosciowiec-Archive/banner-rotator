@@ -2,6 +2,7 @@
 
 namespace App\Domain\ActionHandler;
 
+use App\Domain\Exception\EntityNotFoundException;
 use App\Domain\Repository\BannerRepository;
 use App\Domain\Repository\GroupRepository;
 
@@ -31,6 +32,7 @@ class BrowseAction
      * @param bool $randomize
      *
      * @return array
+     * @throws EntityNotFoundException
      */
     public function handle(string $groupId, int $limit = 50, bool $randomize = false): array
     {

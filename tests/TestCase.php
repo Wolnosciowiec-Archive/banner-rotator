@@ -62,6 +62,11 @@ abstract class TestCase extends WebTestCase
         ];
     }
 
+    /**
+     * @see getValidBannerRequestBodyWithoutId
+     *
+     * @return BannerElement
+     */
     protected function getExampleBanner(): BannerElement
     {
         /**

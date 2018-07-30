@@ -1,10 +1,11 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace App\Controller\PublicSide;
 
 use App\Controller\AbstractController;
 use App\Domain\ActionHandler\BrowseAction;
 use App\Domain\Entity\BannerElement;
+use App\Domain\Exception\EntityNotFoundException;
 use App\Domain\ValueObject\Annotation\ObjectsList;
 use Symfony\Component\HttpFoundation\{JsonResponse, Request, Response};
 use Swagger\Annotations\{Parameter, Response as SWGResponse};
@@ -67,17 +68,22 @@ class BrowseController extends AbstractController
      * @param string $groupName
      *
      * @return JsonResponse
+     * @throws EntityNotFoundException
      */
     public function browseJsonAction(Request $request, string $groupName): JsonResponse
     {
-        $data = $this->handler->handle(
-            $groupName,
-            $this->getIntegerInRange($request->get('limit', 50), 1, 100, 50),
-            $request->get('randomize') === 'true'
-        );
+        try {
+            $data = $this->handler->handle(
+                $groupName,
+                $this->getIntegerInRange($request->get('limit', 50), 1, 100, 50),
+                $request->get('randomize') === 'true'
+            );
+        } catch (EntityNotFoundException $exception) {
+            $data = null;
+        }
 
         if ($data === null) {
-            return $this->createApiResponse(['error' => 'Banner group not found'], 404);
+            return $this->getEntityNotFoundResponse();
         }
 
         return $this->createApiResponse($data, 200);
@@ -135,17 +141,22 @@ class BrowseController extends AbstractController
      * @param string $groupName Banner group name
      *
      * @return Response
+     * @throws EntityNotFoundException
      */
     public function browseRenderedAction(Request $request, string $groupName): Response
     {
-        $data = $this->handler->handle(
-            $groupName,
-            $this->getIntegerInRange($request->get('limit', 50), 1, 100, 50),
-            $request->get('randomize') === 'true'
-        );
+        try {
+            $data = $this->handler->handle(
+                $groupName,
+                $this->getIntegerInRange($request->get('limit', 50), 1, 100, 50),
+                $request->get('randomize') === 'true'
+            );
+        } catch (EntityNotFoundException $exception) {
+            $data = null;
+        }
 
         if ($data === null) {
-            return $this->render('Browse/NoSuchGroup.html.twig');
+            return $this->render('Browse/NoSuchGroup.html.twig', [], new Response('', Response::HTTP_NOT_FOUND));
         }
 
         $data['options'] = [

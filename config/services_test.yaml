@@ -31,3 +31,7 @@ services:
     App\Domain\ActionHandler\GroupAddEditAction:
         public: true
         autowire: true
+
+    App\Domain\ActionHandler\BrowseAction:
+        public: true
+        autowire: true
