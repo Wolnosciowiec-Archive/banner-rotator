@@ -20,6 +20,11 @@ class Kernel extends BaseKernel
         return $this->getProjectDir().'/var/cache/'.$this->environment;
     }
 
+    /**
+     * @codeCoverageIgnore
+     *
+     * @return string
+     */
     public function getLogDir()
     {
         return $this->getProjectDir().'/var/log';
@@ -35,6 +40,13 @@ class Kernel extends BaseKernel
         }
     }
 
+    /**
+     * @codeCoverageIgnore
+     *
+     * @param ContainerBuilder $container
+     * @param LoaderInterface $loader
+     * @throws \Exception
+     */
     protected function configureContainer(ContainerBuilder $container, LoaderInterface $loader)
     {
         $container->setParameter('container.autowiring.strict_mode', true);

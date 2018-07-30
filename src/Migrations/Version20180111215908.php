@@ -7,6 +7,8 @@ use Doctrine\DBAL\Schema\Schema;
 
 /**
  * Initial migration - auto generated for MySQL and SQLite3
+ *
+ * @codeCoverageIgnore
  */
 class Version20180111215908 extends AbstractMigration
 {
