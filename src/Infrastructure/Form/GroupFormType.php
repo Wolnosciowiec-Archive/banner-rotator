@@ -19,7 +19,9 @@ class GroupFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('active',      CheckboxType::class)
+            ->add('active',      CheckboxType::class, [
+                'empty_data' => false
+            ])
             ->add('title',       TextType::class, [
                 'empty_data' => '',
             ])
