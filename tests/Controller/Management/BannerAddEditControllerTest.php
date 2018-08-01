@@ -56,7 +56,6 @@ class BannerAddEditControllerTest extends TestCase
             'no any data submitted' => [
                 'requestData' => [],
                 'expectedResponseMessageParts' => [
-                    '"active":["This value should not be blank."]',
                     '"title":["This value should not be blank."]',
                     '"url":["This value should not be blank."],',
                     '"This value should not be blank."'
@@ -71,7 +70,6 @@ class BannerAddEditControllerTest extends TestCase
                 'expectedResponseMessageParts' => [
                     'This value is too short. It should have 3 characters or more.',
                     '"url":["This value should not be blank."',
-                    '"active":["This value should not be blank."'
                 ]
             ],
 
@@ -176,20 +174,17 @@ class BannerAddEditControllerTest extends TestCase
         );
 
         $body = $this->getValidBannerRequestBodyWithoutId();
-        $body['id'] = 'iwa-ait';
-
         $client->request('POST', '/collective/element/create/anarchism', [], [], [], json_encode($body));
 
         $this->assertSame(201, $client->getResponse()->getStatusCode());
     }
 
     /**
-     * Case: "Creation" endpoint requires additionally "id" field to be specified,
-     *       the rest is common with "Edit" endpoint (400)
+     * Case: "Creation" endpoint checks for common validation rules as edit
      *
      * @see BannerAddEditController::createBannerAction()
      */
-    public function testCreateBannerActionRequiresAdditionallyId(): void
+    public function testCreateBannerActionValidatesUsingSameRulesAsInEdit(): void
     {
         $manager = $this->createMock(BannerManager::class);
         $repository = $this->createMock(BannerRepository::class);
@@ -210,7 +205,6 @@ class BannerAddEditControllerTest extends TestCase
         $client->request('POST', '/collective/element/create/anarchism', [], [], [], json_encode($body));
 
         $this->assertContains('"title":["This value should not be blank."', $client->getResponse()->getContent());
-        $this->assertContains('"id":["This value should not be blank."]', $client->getResponse()->getContent());
         $this->assertSame(400, $client->getResponse()->getStatusCode());
     }
 }
