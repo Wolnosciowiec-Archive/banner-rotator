@@ -89,6 +89,39 @@ class BannerAddEditControllerTest extends TestCase
                     '"imageUrl":["This value is not a valid URL."]'
                 ]
             ],
+
+            'Expires at have incorrect format' => [
+                'requestData' => [
+                    'active' => null,
+                    'expiresAt'  => 'something'
+                ],
+                'expectedResponseMessageParts' => [
+                    '"expiresAt":["This value is not valid."]'
+                ]
+            ],
+
+            'Expires at have correct format' => [
+                'requestData' => [
+                    'active' => null,
+                    'expiresAt'  => '2050-05-30 07:30'
+                ],
+                'expectedResponseMessageParts' => [],
+
+                'expectedResponseNotContainsParts' => [
+                    '"expiresAt":["This value is not valid."]'
+                ]
+            ],
+
+            'Expires at is optional' => [
+                'requestData' => [
+                    'active' => true
+                ],
+                'expectedResponseMessageParts' => [],
+
+                'expectedResponseNotContainsParts' => [
+                    '"expiresAt":["This value is not valid."]'
+                ]
+            ],
         ];
 
 
@@ -103,9 +136,13 @@ class BannerAddEditControllerTest extends TestCase
      *
      * @param array $requestData
      * @param array $expectedResponseMessageParts
+     * @param array $expectedNotContainsParts
      */
-    public function testEditBannerActionValidation(array $requestData, array $expectedResponseMessageParts): void
-    {
+    public function testEditBannerActionValidation(
+        array $requestData,
+        array $expectedResponseMessageParts,
+        array $expectedNotContainsParts = []
+    ): void {
         $manager = $this->createMock(BannerManager::class);
         $repository = $this->createMock(BannerRepository::class);
         $banner = new BannerElement();
@@ -126,6 +163,10 @@ class BannerAddEditControllerTest extends TestCase
 
         foreach ($expectedResponseMessageParts as $part) {
             $this->assertContains($part, $client->getResponse()->getContent());
+        }
+
+        foreach ($expectedNotContainsParts as $part) {
+            $this->assertNotContains($part, $client->getResponse()->getContent());
         }
 
         $this->assertSame(400, $client->getResponse()->getStatusCode());
