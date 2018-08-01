@@ -13,13 +13,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class NewBannerFormType extends BannerFormType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        parent::buildForm($builder, $options);
-
-        $builder->add('id', TextType::class);
-    }
-
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([

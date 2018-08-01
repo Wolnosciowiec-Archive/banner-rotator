@@ -20,7 +20,8 @@ class BannerFormType extends AbstractType
     {
         $builder
             ->add('active',      CheckboxType::class, [
-                'empty_data' => false
+                'data'     => false,
+                'required' => true
             ])
             ->add('title',       TextType::class, [
                 'empty_data' => '',

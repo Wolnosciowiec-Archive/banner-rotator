@@ -11,12 +11,6 @@ App\Domain\Form\GroupForm:
                 min: 0
                 max: 9000
 
-        active:
-            - NotBlank: ~
-            - Type:
-                  type: bool
-            - Choice: [1, 0, true, false]
-
 App\Domain\Form\BannerForm:
     properties:
         url:
@@ -48,21 +42,7 @@ App\Domain\Form\BannerForm:
                 min: 0
                 max: 9000
 
-        active:
-            - NotBlank: ~
-            - Type:
-                  type: bool
-            - Choice: [1, 0, true, false]
-
 App\Domain\Form\NewGroupForm:
-    properties:
-        id:
-            - NotBlank: ~
-            - Length:
-                  min: 3
-                  max: 16
-
-App\Domain\Form\NewBannerForm:
     properties:
         id:
             - NotBlank: ~
