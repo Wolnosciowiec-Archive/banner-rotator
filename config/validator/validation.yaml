@@ -42,6 +42,10 @@ App\Domain\Form\BannerForm:
                 min: 0
                 max: 9000
 
+        expiresAt:
+            - DateTime:
+                  format: Y-m-d H:i:s
+
 App\Domain\Form\NewGroupForm:
     properties:
         id:

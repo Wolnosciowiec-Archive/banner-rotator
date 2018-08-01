@@ -19,16 +19,18 @@ class BannerFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('active',      CheckboxType::class, [
+            ->add('active', CheckboxType::class, [
                 'data'     => false,
                 'required' => true
             ])
-            ->add('title',       TextType::class, [
+            ->add('title', TextType::class, [
                 'empty_data' => '',
             ])
-            ->add('expiresAt',   DateTimeType::class, [
-                'empty_data' => '',
-                'required'   => false,
+            ->add('expiresAt', DateTimeType::class, [
+                'input'       => 'datetime',
+                'widget'      => 'single_text',
+                'required'    => false,
+                'html5'       => true
             ])
             ->add('url',         TextType::class)
             ->add('imageUrl',    TextType::class)
@@ -40,7 +42,7 @@ class BannerFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class'    => BannerForm::class
+            'data_class' => BannerForm::class
         ]);
     }
 }

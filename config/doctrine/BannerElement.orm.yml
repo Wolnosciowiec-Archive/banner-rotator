@@ -28,7 +28,7 @@ App\Domain\Entity\BannerElement:
             column: description
 
         expiresAt:
-            type: datetime_immutable
+            type: datetime
             column: expires_at
             nullable: true
 
