@@ -1508,16 +1508,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nelmio/NelmioApiDocBundle.git",
-                "reference": "619ae0d5aee31b58e77bad503f3c861b2adb2bf6"
+                "reference": "99833189fd963ba75c5b6a99d91fe5485201c0f3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nelmio/NelmioApiDocBundle/zipball/619ae0d5aee31b58e77bad503f3c861b2adb2bf6",
-                "reference": "619ae0d5aee31b58e77bad503f3c861b2adb2bf6",
+                "url": "https://api.github.com/repos/nelmio/NelmioApiDocBundle/zipball/99833189fd963ba75c5b6a99d91fe5485201c0f3",
+                "reference": "99833189fd963ba75c5b6a99d91fe5485201c0f3",
                 "shasum": ""
             },
             "require": {
-                "exsyst/swagger": "~0.3|~0.4",
+                "exsyst/swagger": "^0.4.1",
                 "php": "^7.0",
                 "phpdocumentor/reflection-docblock": "^3.1|^4.0",
                 "symfony/framework-bundle": "^3.4|^4.0",
@@ -1583,7 +1583,7 @@
                 "documentation",
                 "rest"
             ],
-            "time": "2018-07-27T06:30:22+00:00"
+            "time": "2018-08-29T23:10:36+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -3638,17 +3638,6 @@
         {
             "name": "symfony/lts",
             "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/lts.git",
-                "reference": "6de50b244bad631a71544b3cc3c8e206c0e5f991"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/lts/zipball/6de50b244bad631a71544b3cc3c8e206c0e5f991",
-                "reference": "6de50b244bad631a71544b3cc3c8e206c0e5f991",
-                "shasum": ""
-            },
             "conflict": {
                 "symfony/asset": ">=5",
                 "symfony/browser-kit": ">=5",
@@ -3877,25 +3866,28 @@
         },
         {
             "name": "symfony/polyfill-ctype",
-            "version": "v1.8.0",
+            "version": "v1.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-ctype.git",
-                "reference": "7cc359f1b7b80fc25ed7796be7d96adc9b354bae"
+                "reference": "e3d826245268269cd66f8326bd8bc066687b4a19"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/7cc359f1b7b80fc25ed7796be7d96adc9b354bae",
-                "reference": "7cc359f1b7b80fc25ed7796be7d96adc9b354bae",
+                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/e3d826245268269cd66f8326bd8bc066687b4a19",
+                "reference": "e3d826245268269cd66f8326bd8bc066687b4a19",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
+            "suggest": {
+                "ext-ctype": "For best performance"
+            },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.8-dev"
+                    "dev-master": "1.9-dev"
                 }
             },
             "autoload": {
@@ -3928,7 +3920,7 @@
                 "polyfill",
                 "portable"
             ],
-            "time": "2018-04-30T19:57:29+00:00"
+            "time": "2018-08-06T14:22:27+00:00"
         },
         {
             "name": "symfony/polyfill-intl-icu",
@@ -4588,16 +4580,16 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v4.1.2",
+            "version": "v4.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "80e4bfa9685fc4a09acc4a857ec16974a9cd944e"
+                "reference": "b832cc289608b6d305f62149df91529a2ab3c314"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/80e4bfa9685fc4a09acc4a857ec16974a9cd944e",
-                "reference": "80e4bfa9685fc4a09acc4a857ec16974a9cd944e",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/b832cc289608b6d305f62149df91529a2ab3c314",
+                "reference": "b832cc289608b6d305f62149df91529a2ab3c314",
                 "shasum": ""
             },
             "require": {
@@ -4643,7 +4635,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2018-05-30T07:26:09+00:00"
+            "time": "2018-08-18T16:52:46+00:00"
         },
         {
             "name": "twig/twig",
